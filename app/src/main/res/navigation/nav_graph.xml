@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.deasa12.screens.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_setingsFragment"
+            app:destination="@id/setingsFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_selectTeamFragment"
+            app:destination="@id/selectTeamFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setingsFragment"
+        android:name="com.example.deasa12.screens.SetingsFragment"
+        android:label="fragment_setings"
+        tools:layout="@layout/fragment_setings" >
+        <action
+            android:id="@+id/action_setingsFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_setingsFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.deasa12.screens.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logInFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.deasa12.screens.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_registrationFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectTeamFragment"
+        android:name="com.example.deasa12.screens.SelectTeamFragment"
+        android:label="fragment_select_team"
+        tools:layout="@layout/fragment_select_team" >
+        <action
+            android:id="@+id/action_selectTeamFragment_to_teamDialogFragment"
+            app:destination="@id/teamDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamDialogFragment"
+        android:name="com.example.deasa12.TeamDialogFragment"
+        android:label="fragment_team_dialog"
+        tools:layout="@layout/fragment_team_dialog" >
+
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="name" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>
