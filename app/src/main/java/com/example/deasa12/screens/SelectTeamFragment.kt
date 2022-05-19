@@ -5,67 +5,56 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deasa10.dataList.DataList
 import com.example.deasa12.R
-import com.example.deasa12.TeamDialogFragment
-import com.example.deasa12.adapters.TeamAdapter
 import com.example.deasa12.databinding.FragmentSelectTeamBinding
-import com.example.deasa12.models.Teams
+import com.example.deasa12.screens.dialogScreens.TeamDialogFragment
+import com.example.deasa12.screens.dialogScreens.TeamDialogFragmentArgs
 
 class SelectTeamFragment : Fragment() {
     lateinit var binding: FragmentSelectTeamBinding
-    lateinit var teamAdapter: TeamAdapter
+    private val args: TeamDialogFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
         binding = FragmentSelectTeamBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var list = mutableListOf<Teams>()
-        var teamDialog = TeamDialogFragment()
 
-        binding.rvTeams.layoutManager = LinearLayoutManager(this.context)
-
-        teamAdapter = TeamAdapter(DataList.teamList) {
-
-            if (it.id == 1) {
-                findNavController().navigate(SelectTeamFragmentDirections.actionSelectTeamFragmentToTeamDialogFragment(it.team, 1))
+        binding.apply {
+            tvTeam1.text = DataList.teamList[0].team
+            tvTeam2.text = DataList.teamList[1].team
+            tvTeam1.setOnClickListener {
+                findNavController().navigate(SelectTeamFragmentDirections.actionSelectTeamFragmentToTeamDialogFragment(
+                    tvTeam1.text.toString(), 0
+                ))
             }
-            if (it.id == 2) {
-                findNavController().navigate(SelectTeamFragmentDirections.actionSelectTeamFragmentToTeamDialogFragment(it.firstPlayer, 2))
+
+            tvTeam2.setOnClickListener {
+                findNavController().navigate(SelectTeamFragmentDirections.actionSelectTeamFragmentToTeamDialogFragment(
+                    tvTeam2.text.toString(), 1
+                ))
             }
-            if (it.id == 3) {
-                findNavController().navigate(SelectTeamFragmentDirections.actionSelectTeamFragmentToTeamDialogFragment(it.secondPlayer, 3))
+
+            btnStart.setOnClickListener {
+                findNavController().navigate(R.id.action_selectTeamFragment_to_deAsaStoageFragment)
             }
 
         }
 
-
-
-//        teamViewModel.liveDataTeam.observe(viewLifecycleOwner, Observer {
-//            binding.tvTeams.text = it.toString()
-//        })
-
-        binding.rvTeams.adapter = teamAdapter
-
-//        teamViewModel.getTeams().observe(viewLifecycleOwner, Observer {
-//            it.forEach {
-//                list.add(
-//                    Teams(it.id, it.team, it.firstPlayer, it.secondPlayer)
-//                )
-//            }
-//        })
-
         binding.tvTeams.setOnClickListener {
-            teamAdapter.notifyDataSetChanged()
+            findNavController().navigate(R.id.action_selectTeamFragment_to_teamDialogFragment)
         }
 
     }
+
+
 }

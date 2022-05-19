@@ -1,4 +1,4 @@
-package com.example.deasa12
+package com.example.deasa12.screens.dialogScreens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.deasa10.dataList.DataList
+import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentTeamDialogBinding
 
-class TeamDialogFragment : DialogFragment()  {
+class TeamDialogFragment : DialogFragment() {
     lateinit var binding: FragmentTeamDialogBinding
     private val args: TeamDialogFragmentArgs by navArgs()
     override fun onCreateView(
@@ -22,31 +23,23 @@ class TeamDialogFragment : DialogFragment()  {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        binding.tvName.text = args.name
-
-
-            if (args.id == 2) {
-                DataList.teamList.forEach {
-                    if(it.firstPlayer == binding.tvName.text) {
-                        it.firstPlayer = binding.edName.text.toString()
-                    }
-                }
-            }
-
-            if (args.id == 3) {
-                DataList.teamList.forEach {
-                    if(it.secondPlayer == binding.tvName.text) {
-                        it.secondPlayer = binding.edName.text.toString()
-                    }
-                }
-            }
+        binding.btnCancel.setOnClickListener {
             dismiss()
         }
 
+        binding.tvName.text = args.name
+        binding.btnOk.setOnClickListener {
+            findNavController().navigate(R.id.action_teamDialogFragment_to_selectTeamFragment)
+            if (args.id == 0) {
+                DataList.teamList[0].team = binding.edName.text.toString()
+            }
 
+            if (args.id == 1) {
+                DataList.teamList[1].team = binding.edName.text.toString()
+            }
+            dismiss()
+        }
     }
+}

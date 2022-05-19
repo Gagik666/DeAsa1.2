@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ff7961"
+    android:background="#ff4081"
     android:padding="35dp"
     tools:context=".screens.RegistrationFragment">
 
@@ -33,25 +33,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="#F88875"
             android:hint="firstName"
+            android:backgroundTint="#a94faa"
             android:inputType="textImeMultiLine"
-            android:maxLength="15"
             android:padding="12dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/edLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="#F88875"
             android:hint="lastName"
             android:inputType="textImeMultiLine"
-            android:maxLength="15"
+            android:backgroundTint="#a94faa"
             android:padding="12dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
@@ -63,8 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="#F88875"
             android:hint="@string/email"
+            android:backgroundTint="#a94faa"
             android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textColor="@color/white"
@@ -77,14 +75,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="#F88875"
             android:hint="@string/password"
             android:padding="12dp"
             android:inputType="textPassword"
+            android:backgroundTint="#a94faa"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tveror"
@@ -93,7 +91,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="visible"
-            android:textColor="@color/purple_700"
+            android:textColor="#FF0404"
             android:layout_marginTop="16dp"/>
 
         <com.google.android.material.button.MaterialButton
@@ -101,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:backgroundTint="#ba000d"
+            android:backgroundTint="#a94faa"
             android:text="@string/registration"
             android:textSize="28sp"
             android:textStyle="bold"

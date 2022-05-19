@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff7961"
+    android:background="#ff4081"
     tools:context=".SplashScreenActivity">
 
     <TextView
@@ -14,7 +14,7 @@
         android:text="DeAsa"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#ffee58"
+        android:textColor="#a94faa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

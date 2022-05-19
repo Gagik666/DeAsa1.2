@@ -61,13 +61,19 @@
         <action
             android:id="@+id/action_selectTeamFragment_to_teamDialogFragment"
             app:destination="@id/teamDialogFragment" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="name" />
+        <action
+            android:id="@+id/action_selectTeamFragment_to_deAsaStoageFragment"
+            app:destination="@id/deAsaStoageFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/teamDialogFragment"
-        android:name="com.example.deasa12.TeamDialogFragment"
+        android:name="com.example.deasa12.screens.dialogScreens.TeamDialogFragment"
         android:label="fragment_team_dialog"
         tools:layout="@layout/fragment_team_dialog" >
-
         <argument
             android:name="name"
             app:argType="string"
@@ -76,5 +82,27 @@
             android:name="id"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_teamDialogFragment_to_selectTeamFragment"
+            app:destination="@id/selectTeamFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/deAsaStoageFragment"
+        android:name="com.example.deasa12.screens.DeAsaStoageFragment"
+        android:label="fragment_de_asa_stoage"
+        tools:layout="@layout/fragment_de_asa_stoage" >
+        <action
+            android:id="@+id/action_deAsaStoageFragment_to_pointFragment"
+            app:destination="@id/pointFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/pointFragment"
+        android:name="com.example.deasa12.screens.PointFragment"
+        android:label="fragment_point"
+        tools:layout="@layout/fragment_point" >
+        <action
+            android:id="@+id/action_pointFragment_to_deAsaStoageFragment"
+            app:destination="@id/deAsaStoageFragment" />
+    </fragment>
+
 </navigation>

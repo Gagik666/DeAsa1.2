@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ff7961"
+    android:background="#ff4081"
     android:padding="35dp"
     tools:context=".screens.LogInFragment">
 
@@ -26,28 +26,28 @@
             android:text="Sig In"
             android:textColor="@color/white"
             android:textSize="45sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/edEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="#F88875"
             android:hint="@string/email"
+            android:backgroundTint="#a94faa"
             android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/edPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="#F88875"
+            android:backgroundTint="#a94faa"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="12dp"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/log_in"
-            android:backgroundTint="#ba000d"
+            android:backgroundTint="#a94faa"
             android:textSize="28sp"
             android:textStyle="bold"
             app:cornerRadius="24dp"/>

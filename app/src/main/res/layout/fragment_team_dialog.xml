@@ -3,18 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:padding="32dp"
+    android:background="#ff4081"
+    android:padding="35dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".TeamDialogFragment">
+    tools:context=".screens.dialogScreens.TeamDialogFragment">
+
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        android:textColor="@color/black"
+        android:textColor="#a94faa"
         android:textSize="24sp"
+        android:textStyle="bold"
         android:layout_marginBottom="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -23,33 +25,41 @@
         android:id="@+id/edName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#a94faa"
         android:hint="name"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/white"
         android:textSize="18sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:padding="15dp"
         android:layout_marginStart="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvName"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnOk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OK"
         android:layout_marginTop="24dp"
+        android:backgroundTint="#a94faa"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:cornerRadius="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edName" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="cancel"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        android:backgroundTint="#a94faa"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:cornerRadius="24dp"
         app:layout_constraintEnd_toStartOf="@id/btnOk"
         app:layout_constraintTop_toBottomOf="@id/edName"/>
 
