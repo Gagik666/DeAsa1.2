@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.deasa10.dataList.DataList
+import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
 import com.example.deasa12.adapters.SingerAdapter
 import com.example.deasa12.databinding.FragmentDeAsaStoageBinding

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff4081"
+    android:background="@drawable/baxgraund_fon"
     android:padding="16dp"
     tools:context=".screens.DeAsaStoageFragment">
 
@@ -12,7 +12,7 @@
         android:id="@+id/tvTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#a94faa"
+        android:textColor="#2bbd7e"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

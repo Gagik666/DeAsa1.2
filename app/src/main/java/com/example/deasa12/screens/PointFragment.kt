@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.deasa10.dataList.DataList
+import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentPointBinding
 

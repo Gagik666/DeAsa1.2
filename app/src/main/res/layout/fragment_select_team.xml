@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff4081"
+    android:background="@drawable/baxgraund_fon"
     android:padding="16dp"
     tools:context=".screens.SelectTeamFragment">
 
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Start"
-        android:backgroundTint="#a94faa"
+        android:backgroundTint="#2bbd7e"
         android:textSize="28sp"
         android:textStyle="bold"
         app:cornerRadius="24dp"

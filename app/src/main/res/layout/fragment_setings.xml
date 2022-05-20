@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff4081"
+    android:background="@drawable/baxgraund_fon"
     android:padding="25dp"
     tools:context=".screens.SetingsFragment">
 
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="SETINGS"
-        android:textColor="#a94faa"
+        android:textColor="#2bbd7e"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

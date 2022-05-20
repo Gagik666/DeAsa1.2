@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ff4081"
+    android:background="@drawable/baxgraund_fon"
     android:padding="35dp"
     tools:context=".screens.LogInFragment">
 
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:hint="@string/email"
-            android:backgroundTint="#a94faa"
+            android:backgroundTint="#2bbd7e"
             android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textColor="@color/white"
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="#a94faa"
+            android:backgroundTint="#2bbd7e"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="12dp"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/log_in"
-            android:backgroundTint="#a94faa"
+            android:backgroundTint="#2bbd7e"
             android:textSize="28sp"
             android:textStyle="bold"
             app:cornerRadius="24dp"/>

@@ -1,5 +1,6 @@
 package com.example.deasa12.screens
 
+import Funs
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -66,7 +67,12 @@ class RegistrationFragment : Fragment() {
                                         .show()
                                 }
                         } else {
-                            Toast.makeText(context, "error Registration", Toast.LENGTH_SHORT).show()
+                            if (context?.let { it1 -> !Funs.checkForInternet(it1) } == true) {
+                                Toast.makeText(context, "There is not conection internet", Toast.LENGTH_SHORT).show()
+                            } else if (!Task.isSuccessful) {
+                                Toast.makeText(context, "There is a user", Toast.LENGTH_SHORT).show()
+                            }
+
                             binding.progressBar.visibility = View.GONE
 
                         }
@@ -95,7 +101,6 @@ class RegistrationFragment : Fragment() {
                                         .show()
                                 }
                         } else {
-                            Toast.makeText(context, "error Registration", Toast.LENGTH_SHORT).show()
                             binding.progressBar.visibility = View.GONE
                         }
                     }

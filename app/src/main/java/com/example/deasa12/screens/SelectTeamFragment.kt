@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.deasa10.dataList.DataList
+import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentSelectTeamBinding
-import com.example.deasa12.screens.dialogScreens.TeamDialogFragment
 import com.example.deasa12.screens.dialogScreens.TeamDialogFragmentArgs
 
 class SelectTeamFragment : Fragment() {

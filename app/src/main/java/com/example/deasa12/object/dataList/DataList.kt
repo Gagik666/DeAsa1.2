@@ -1,4 +1,4 @@
-package com.example.deasa10.dataList
+package com.example.deasa12.`object`.dataList
 
 import com.example.deasa12.models.Queue
 import com.example.deasa12.models.Teams

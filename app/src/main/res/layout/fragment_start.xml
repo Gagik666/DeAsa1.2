@@ -10,12 +10,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ff4081">
+        android:background="@drawable/baxgraund_fon">
 
         <Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#c60055"
+            android:background="#2bbd7e"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="200dp"
             android:text="DeAsa"
-            android:textColor="#a94faa"
+            android:textColor="#2bbd7e"
             android:textSize="50sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +46,7 @@
             android:id="@+id/btnPlayInTeams"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#a94faa"
+            android:backgroundTint="#2bbd7e"
             android:text="Play in teams"
             android:textColor="@color/white"
             android:textSize="24sp"
