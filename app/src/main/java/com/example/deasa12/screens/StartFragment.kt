@@ -37,7 +37,10 @@ class StartFragment : Fragment() {
             nvMenu.setNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.itemSetings -> findNavController().navigate(R.id.action_startFragment_to_setingsFragment)
+                    R.id.itemRating -> findNavController().navigate(R.id.action_startFragment_to_ratingFragment)
+                    R.id.itemUsers -> findNavController().navigate(R.id.action_startFragment_to_usersFragment)
                 }
+
                 true
             }
         }

@@ -1,5 +1,7 @@
 package com.example.deasa12.screens
 
+
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
@@ -7,11 +9,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentLogInBinding
 import com.google.firebase.auth.FirebaseAuth
+
 
 class LogInFragment : Fragment() {
     lateinit var binding: FragmentLogInBinding
@@ -33,6 +35,7 @@ class LogInFragment : Fragment() {
             if (!isValidEmail(binding.edEmail.text.toString())) {
                 binding.progressBar.visibility = View.GONE
                 binding.edEmail.error = ("email is invalide")
+                binding.edEmail.requestFocus()
             } else if (binding.edPassword.text.toString().isEmpty()) {
                 binding.progressBar.visibility = View.GONE
                 binding.edPassword.error = ("password is empty")
@@ -46,9 +49,12 @@ class LogInFragment : Fragment() {
                         binding.tveror.visibility = View.GONE
                         findNavController().navigate(R.id.action_logInFragment_to_startFragment)
                     } else {
-                        binding.tveror.visibility = View.VISIBLE
                         binding.progressBar.visibility = View.GONE
-                        Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
+                        if (context?.let { it1 -> !Funs.checkForInternet(it1) } == true) {
+                            erorDialog("There is not conection internet")
+                        } else if (!Task.isSuccessful) {
+                            erorDialog("There is not user")
+                        }
                     }
                 }
             }
@@ -57,11 +63,19 @@ class LogInFragment : Fragment() {
 
         binding.tvRegistration.setOnClickListener {
             findNavController().navigate(R.id.action_logInFragment_to_registrationFragment)
+
         }
     }
 
     private fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    fun erorDialog(title: String) {
+        val bulder = AlertDialog.Builder(context)
+        bulder.setTitle(title)
+        bulder.setPositiveButton("Ok") { dialog, i -> }
+        bulder.show()
     }
 
 }

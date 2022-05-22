@@ -43,6 +43,7 @@ class SelectTeamFragment : Fragment() {
             }
 
             btnStart.setOnClickListener {
+                DataList.singerList.shuffle()
                 findNavController().navigate(R.id.action_selectTeamFragment_to_deAsaStoageFragment)
             }
 
@@ -51,6 +52,8 @@ class SelectTeamFragment : Fragment() {
         binding.tvTeams.setOnClickListener {
             findNavController().navigate(R.id.action_selectTeamFragment_to_teamDialogFragment)
         }
+
+        binding.tvRoundSec.text  = "${Values.timer} sec "
 
     }
 

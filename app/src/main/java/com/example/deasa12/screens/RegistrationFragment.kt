@@ -1,6 +1,7 @@
 package com.example.deasa12.screens
 
 import Funs
+import android.app.AlertDialog
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -50,10 +51,10 @@ class RegistrationFragment : Fragment() {
                 )
                     .addOnCompleteListener { Task ->
                         if (Task.isSuccessful) {
-                            Toast.makeText(context, "Registration", Toast.LENGTH_SHORT).show()
                             binding.progressBar.visibility = View.GONE
                             findNavController().navigate(R.id.action_registrationFragment_to_startFragment)
                             val firbaseUser = FirebaseAuth.getInstance().currentUser
+                            Values.userId = mAuth.currentUser!!.uid
                             val hashMap = hashMapOf<String, Any>(
                                 "firstName" to binding.edFirstName.text.toString(),
                                 "lastName" to binding.edLastName.text.toString(),
@@ -62,17 +63,11 @@ class RegistrationFragment : Fragment() {
 
                             firebaseDatabase.collection("users").document(firbaseUser!!.uid)
                                 .set(hashMap)
-                                .addOnSuccessListener {
-                                    Toast.makeText(context, "add data base", Toast.LENGTH_SHORT)
-                                        .show()
-                                }
+                                .addOnSuccessListener {}
                         } else {
                             if (context?.let { it1 -> !Funs.checkForInternet(it1) } == true) {
-                                Toast.makeText(context, "There is not conection internet", Toast.LENGTH_SHORT).show()
-                            } else if (!Task.isSuccessful) {
-                                Toast.makeText(context, "There is a user", Toast.LENGTH_SHORT).show()
+                                erorDialog("There is not conection internet")
                             }
-
                             binding.progressBar.visibility = View.GONE
 
                         }
@@ -84,7 +79,6 @@ class RegistrationFragment : Fragment() {
                 )
                     .addOnCompleteListener { Task ->
                         if (Task.isSuccessful) {
-                            Toast.makeText(context, "Registration", Toast.LENGTH_SHORT).show()
                             binding.progressBar.visibility = View.GONE
                             findNavController().navigate(R.id.action_registrationFragment_to_startFragment)
                             val firbaseUser = FirebaseAuth.getInstance().currentUser
@@ -96,10 +90,7 @@ class RegistrationFragment : Fragment() {
 
                             firebaseDatabase.collection("users").document(firbaseUser!!.uid)
                                 .set(hashMap)
-                                .addOnSuccessListener {
-                                    Toast.makeText(context, "add data base", Toast.LENGTH_SHORT)
-                                        .show()
-                                }
+                                .addOnSuccessListener {}
                         } else {
                             binding.progressBar.visibility = View.GONE
                         }
@@ -116,6 +107,13 @@ class RegistrationFragment : Fragment() {
 
     private fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    fun erorDialog(title: String) {
+        val bulder = AlertDialog.Builder(context)
+        bulder.setTitle(title)
+        bulder.setPositiveButton("Ok") { dialog, i -> }
+        bulder.show()
     }
 
 }

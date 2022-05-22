@@ -1,5 +1,7 @@
 package com.example.deasa12.adapters
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,16 +11,24 @@ import com.example.deasa12.databinding.ItemSingerBinding
 
 class SingerAdapter(
     private val singerList: MutableList<String>,
-    private val onClickItem: (singer: String) -> Unit
+    private val onClickItem: (click: Boolean) -> Unit
 ): RecyclerView.Adapter<SingerAdapter.SingerViewHolder>() {
 
     inner class SingerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding = ItemSingerBinding.bind(itemView)
+        @SuppressLint("ResourceAsColor")
         fun bind(s: String) = with(binding) {
-            tvSinger.text = s
-
-            tvSinger.setOnClickListener {
-                onClickItem.invoke(s)
+            btnSinger.text = s
+            var click = false
+            btnSinger.setOnClickListener {
+                if (!click) {
+                    binding.btnSinger.setTextColor(R.color.gray)
+                    click = true
+                } else {
+                    binding.btnSinger.setTextColor(R.color.black)
+                    click = false
+                }
+                onClickItem.invoke(click)
             }
         }
 

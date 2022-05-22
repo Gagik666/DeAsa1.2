@@ -20,20 +20,22 @@ class SetingsFragment : Fragment() {
        binding = FragmentSetingsBinding.inflate(inflater)
        return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         if (mAuth.currentUser != null) {
             binding.apply {
                 flowLogOut.visibility = View.VISIBLE
-                flowLogIn.visibility = View.GONE
+                flowLogIn.visibility = View.INVISIBLE
             }
         } else {
             binding.apply {
-                flowLogOut.visibility = View.GONE
+                flowLogOut.visibility = View.INVISIBLE
                 flowLogIn.visibility = View.VISIBLE
             }
         }
+
 
         binding.flowLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
@@ -42,6 +44,16 @@ class SetingsFragment : Fragment() {
 
         binding.flowLogIn.setOnClickListener {
             findNavController().navigate(R.id.action_setingsFragment_to_logInFragment)
+        }
+
+        binding.btnSave.setOnClickListener {
+            val rdBtnGrup = binding.rdGrupSetings.checkedRadioButtonId
+            when(rdBtnGrup) {
+                R.id.rdBtn60Sec -> Values.timer = 60
+                R.id.rdBtn90sec -> Values.timer = 90
+                R.id.rdBtn120sec -> Values.timer = 120
+            }
+            findNavController().navigate(R.id.action_setingsFragment_to_startFragment)
         }
     }
 }

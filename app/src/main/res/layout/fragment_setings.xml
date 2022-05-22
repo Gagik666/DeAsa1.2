@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="SETINGS"
-        android:textColor="#2bbd7e"
+        android:textColor="#91E3BF"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:clickable="true"
         android:focusable="true"
         app:constraint_referenced_ids="imgLogIn,tvLogIn"
@@ -49,7 +49,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="@string/log_in"
-        android:textColor="@color/white"
+        android:textColor="#2E3A2D"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@id/imgLogIn"
         app:layout_constraintTop_toTopOf="@id/flowLogIn" />
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:clickable="true"
         android:focusable="true"
         app:constraint_referenced_ids="imgLogOut,tvlogOut"
@@ -83,9 +83,84 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="@string/log_out"
-        android:textColor="@color/white"
+        android:textColor="#2E3A2D"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@id/imgLogOut"
         app:layout_constraintTop_toTopOf="@id/flowLogOut"/>
 
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flowInterval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginTop="28dp"
+        app:constraint_referenced_ids="imgTimer,tvInterval"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flowLogOut"/>
+
+    <ImageView
+        android:id="@+id/imgTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_timer"
+        app:layout_constraintStart_toStartOf="@id/flowInterval"
+        app:layout_constraintTop_toTopOf="@id/flowInterval"/>
+
+    <TextView
+        android:id="@+id/tvInterval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Interval"
+        android:textColor="#2E3A2D"
+        android:textSize="24sp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintStart_toEndOf="@id/imgTimer"
+        app:layout_constraintTop_toTopOf="@id/imgTimer"/>
+
+    <RadioGroup
+        android:id="@+id/rdGrupSetings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="28dp"
+        android:paddingStart="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tvInterval"
+        app:layout_constraintStart_toStartOf="@id/tvInterval">
+
+        <RadioButton
+            android:id="@+id/rdBtn60Sec"
+            android:text="60 sec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/rdBtn90sec"
+            android:text="90 sec"
+            android:checked="true"
+            android:layout_marginVertical="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/rdBtn120sec"
+            android:text="120 sec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:cornerRadius="50dp"
+        android:backgroundTint="#2bbd7e"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

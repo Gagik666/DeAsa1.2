@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Team" />
 
+
     <TextView
         android:id="@+id/tvSeconds"
         android:layout_width="wrap_content"
@@ -37,13 +38,15 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSeconds" />
+        app:layout_constraintTop_toBottomOf="@id/tvSeconds"
+        app:layout_constraintBottom_toTopOf="@id/tvPoint"/>
 
     <TextView
         android:id="@+id/tvPoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
         android:text="Point: 0"
         android:textColor="@color/white"
         android:textSize="20sp"

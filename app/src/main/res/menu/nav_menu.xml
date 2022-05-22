@@ -5,4 +5,14 @@
         android:id="@+id/itemSetings"
         android:icon="@drawable/ic_setings"/>
 
+    <item
+        android:title="Rating"
+        android:id="@+id/itemRating"
+        android:icon="@drawable/ic_rating"/>
+
+    <item
+        android:title="Users"
+        android:id="@+id/itemUsers"
+        android:icon="@drawable/ic_users"/>
+
 </menu>
