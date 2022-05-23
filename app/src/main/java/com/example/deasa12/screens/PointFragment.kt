@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+
 import androidx.navigation.fragment.findNavController
 import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
@@ -17,6 +17,11 @@ import com.google.firebase.auth.FirebaseAuth
 class PointFragment : Fragment() {
     lateinit var binding: FragmentPointBinding
     private lateinit var mAuth: FirebaseAuth
+    lateinit var team1name: String
+    lateinit var team1point: String
+    lateinit var team2name: String
+    lateinit var team2point: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,12 +33,41 @@ class PointFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
+
+
+
+
+
+        if (mAuth.currentUser != null) {
+            FirebaseUtils().fireStoreDatabase.collection("Teams")
+                .document(mAuth.currentUser!!.uid).get().addOnSuccessListener { querySnapshot ->
+                    team1name = querySnapshot.data?.get("Team1Name").toString()
+                    team1point = querySnapshot.data?.get("Team1Point").toString()
+                    team2name = querySnapshot.data?.get("Team2Name").toString()
+                    team2point = querySnapshot.data?.get("Team2Point").toString()
+
+                    binding.tvTeam1NameOlden.text = team1name
+                    binding.tvTeam1PointOlden.text = team1point
+                    binding.tvTeam2NamaeOlden.text = team2name
+                    binding.tvTeam2PointOlden.text = team2point
+                }
+
+        }
+
+        binding.tvShowhResult.setOnClickListener{
+            binding.tvTeam1NameOlden.visibility = View.VISIBLE
+            binding.tvTeam1PointOlden.visibility = View.VISIBLE
+            binding.tvTeam2NamaeOlden.visibility = View.VISIBLE
+            binding.tvTeam2PointOlden.visibility = View.VISIBLE
+        }
+
+
         val queue = DataList.queueList[0].queue.toString().toInt()
         if (queue == 4) {
             binding.btnPlay.visibility = View.INVISIBLE
             binding.btnAgain.visibility = View.VISIBLE
-            binding.btnSaveResults.visibility = View.VISIBLE
-            binding.tvSaveResult.visibility = View.VISIBLE
+            binding.btnRefreshResults.visibility = View.VISIBLE
+            binding.tvShowhResult.visibility = View.VISIBLE
         }
         binding.btnPlay.setOnClickListener {
             DataList.queueList[0].queue += 1
@@ -44,9 +78,9 @@ class PointFragment : Fragment() {
         binding.tvTeam1Point.text = DataList.teamList[0].point.toString()
         binding.tvTeam2Point.text = DataList.teamList[1].point.toString()
         binding.tvTeam1Name.text = DataList.teamList[0].team
-        binding.tvTeam2Nmae.text = DataList.teamList[1].team
+        binding.tvTeam2Namae.text = DataList.teamList[1].team
 
-        binding.btnSaveResults.setOnClickListener {
+        binding.btnRefreshResults.setOnClickListener {
             if (context?.let { it1 -> !Funs.checkForInternet(it1) } == true) {
                 binding.progressBar.visibility = View.GONE
                 erorDialog("There is not conection internet")
@@ -63,13 +97,23 @@ class PointFragment : Fragment() {
                     FirebaseUtils().fireStoreDatabase.collection("Teams")
                         .document(mAuth.currentUser!!.uid).set(hashMap).addOnSuccessListener {
                             binding.progressBar.visibility = View.GONE
-                            erorDialog("data saved")
+                            erorDialog("data updated")
                         }
                 } else {
                     binding.progressBar.visibility = View.GONE
                     erorDialog("You are not Registered")
                 }
             }
+
+            binding.tvTeam1NameOlden.visibility = View.INVISIBLE
+            binding.tvTeam1PointOlden.visibility = View.INVISIBLE
+            binding.tvTeam2NamaeOlden.visibility = View.INVISIBLE
+            binding.tvTeam2PointOlden.visibility = View.INVISIBLE
+
+            binding.tvTeam1NameOlden.text = binding.tvTeam1Name.text
+            binding.tvTeam1PointOlden.text = binding.tvTeam1Point.text
+            binding.tvTeam2NamaeOlden.text = binding.tvTeam2Namae.text
+            binding.tvTeam2PointOlden.text = binding.tvTeam2Point.text
         }
 
 

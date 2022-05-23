@@ -17,6 +17,8 @@ class UsersFragment : Fragment() {
     lateinit var binding: FragmentUsersBinding
     lateinit var usersAdapter: UsersAdapter
     private lateinit var mAuth: FirebaseAuth
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +31,9 @@ class UsersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val userList = mutableListOf<UserModel>()
         mAuth = FirebaseAuth.getInstance()
+
+
+
         binding.rvUsers.layoutManager = LinearLayoutManager(this.context)
         FirebaseUtils().fireStoreDatabase.collection("Rating").get()
             .addOnSuccessListener { Task ->
@@ -37,7 +42,7 @@ class UsersFragment : Fragment() {
                         UserModel(
                             it.data["firstName"].toString(),
                             it.data["lastName"].toString(),
-                            it.data["rating"].toString().toInt()
+                            it.data["rating"].toString().toInt(),
                         )
                     )
                 }

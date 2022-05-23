@@ -109,5 +109,16 @@
             app:layout_constraintEnd_toEndOf="@id/flowStar"
             app:layout_constraintBottom_toBottomOf="@id/flowStar"/>
 
+        <TextView
+            android:id="@+id/tvTeam1Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="team1Name"
+            android:textSize="22sp"
+            android:textColor="#2E3A2D"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

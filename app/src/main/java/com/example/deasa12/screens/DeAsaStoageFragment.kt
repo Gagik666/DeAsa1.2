@@ -17,7 +17,7 @@ import com.example.deasa12.R
 import com.example.deasa12.adapters.SingerAdapter
 import com.example.deasa12.databinding.FragmentDeAsaStoageBinding
 import com.example.deasa12.viewModel.DeAsaViewModel
-import kotlinx.coroutines.*
+
 
 class DeAsaStoageFragment : Fragment() {
     lateinit var binding: FragmentDeAsaStoageBinding

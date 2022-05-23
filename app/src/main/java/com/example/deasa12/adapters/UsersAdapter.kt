@@ -17,6 +17,7 @@ class UsersAdapter(
         fun bind(user: UserModel) = with(binding) {
             tvFirstname.text = user.firstName
             tvLastName.text = user.lastName
+            tvTeam1Name.text = user.Team1Name
 
             when (user.rating) {
                 1 -> {

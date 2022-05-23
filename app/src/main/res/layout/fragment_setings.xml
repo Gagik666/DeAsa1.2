@@ -8,6 +8,16 @@
     android:padding="25dp"
     tools:context=".screens.SetingsFragment">
 
+
+    <ImageView
+        android:id="@+id/imgProfil"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_user"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:id="@+id/tvSetings"
         android:layout_width="wrap_content"
@@ -18,7 +28,7 @@
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/imgProfil"/>
 
 
     <androidx.constraintlayout.helper.widget.Flow
@@ -127,6 +137,7 @@
         android:orientation="vertical"
         android:layout_marginTop="28dp"
         android:paddingStart="24dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/tvInterval"
         app:layout_constraintStart_toStartOf="@id/tvInterval">
 

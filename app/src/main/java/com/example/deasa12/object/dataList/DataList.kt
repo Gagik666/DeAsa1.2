@@ -1,5 +1,6 @@
 package com.example.deasa12.`object`.dataList
 
+import com.example.deasa12.`object`.dataList.DataList.singerList
 import com.example.deasa12.models.Queue
 import com.example.deasa12.models.Teams
 
@@ -16,7 +17,6 @@ object DataList {
     val queueList = mutableListOf<Queue>(
         Queue(1)
     )
-
 
     val singerList =
         mutableListOf("Արմո", "Սերժ Թանկյան", "Հայկո", "Ռուբեն Հախվերդիան", "Сосо Павлиашвили",
@@ -38,4 +38,7 @@ object DataList {
         "Նարեկ Բավեյան", "ՎնասաԿար", "Անետե Աղաբեկյան", "Արթուր Առաքելյան", "Ռավո Խաչատրյան",
         "Արա Ալիկ", "Օքսի Ավդալյան", "Գևորգ Սիրեկանյան", "Գոռ Երեմյան", "Զոյա Բառառամյան",
         "Jah Kalib", "Մաշ Իսրաելյան", "խչո", "Գայա Աբհրամյան", "Գայա Արզումանյան", "Գուրգեն Դաբաղյան")
+
+
+
 }

@@ -15,6 +15,7 @@
         android:text="Team 1"
         android:textSize="28sp"
         android:textColor="#2E3A2D"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -29,12 +30,13 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/tvTeam2Nmae"
+        android:id="@+id/tvTeam2Namae"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Team 2"
         android:textSize="28sp"
         android:textColor="#2E3A2D"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/tvTeam1Name"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -49,17 +51,17 @@
         app:layout_constraintTop_toBottomOf="@id/tvTeam1Point"/>
 
     <ImageButton
-        android:id="@+id/btnSaveResults"
+        android:id="@+id/btnRefreshResults"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_save"
+        android:src="@drawable/ic__refresh"
         android:layout_marginTop="32dp"
         android:backgroundTint="#2bbd7e"
         android:paddingHorizontal="32dp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTeam2Nmae"/>
+        app:layout_constraintTop_toBottomOf="@id/tvTeam2Namae"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -73,16 +75,66 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvSaveResult"
+        android:id="@+id/tvShowhResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save results"
+        android:text="Show olden result"
         android:textSize="16sp"
         android:textColor="#2E3A2D"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@id/btnSaveResults"
-        app:layout_constraintEnd_toEndOf="@id/btnSaveResults"
-        app:layout_constraintTop_toBottomOf="@id/btnSaveResults"/>
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/btnRefreshResults"
+        app:layout_constraintEnd_toEndOf="@id/btnRefreshResults"
+        app:layout_constraintTop_toBottomOf="@id/btnRefreshResults"/>
+
+    <TextView
+        android:id="@+id/tvTeam1NameOlden"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Team 1"
+        android:textSize="28sp"
+        android:textColor="#2E3A2D"
+        android:layout_marginTop="24dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvShowhResult"/>
+
+    <TextView
+        android:id="@+id/tvTeam1PointOlden"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="28sp"
+        android:textColor="#2E3A2D"
+        android:layout_marginTop="24dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/tvShowhResult"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvTeam2NamaeOlden"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Team 2"
+        android:textSize="28sp"
+        android:textColor="#2E3A2D"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/tvTeam1NameOlden"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvTeam2PointOlden"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="28sp"
+        android:textColor="#2E3A2D"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTeam1PointOlden"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnPlay"
