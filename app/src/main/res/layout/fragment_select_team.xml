@@ -21,11 +21,13 @@
 
     <TextView
         android:id="@+id/tvTeam1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="24dp"
         android:text="Team 1"
+        android:gravity="center"
+        android:background="@drawable/tv_bacgraund"
         android:textColor="#2E3A2D"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -34,12 +36,14 @@
 
     <TextView
         android:id="@+id/tvTeam2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="24dp"
         android:text="Team 2"
         android:textColor="#2E3A2D"
+        android:background="@drawable/tv_bacgraund"
+        android:gravity="center"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

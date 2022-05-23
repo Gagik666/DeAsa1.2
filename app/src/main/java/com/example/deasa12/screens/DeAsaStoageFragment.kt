@@ -81,7 +81,7 @@ class DeAsaStoageFragment : Fragment() {
     }
     fun getSingerTempList(): MutableList<String> {
         for (i in 1..5) {
-            val randomSinger = (0..76).random()
+            val randomSinger = (0..100).random()
             DataList.tempList.add(DataList.singerList[randomSinger])
         }
         return DataList.tempList

@@ -63,7 +63,7 @@ class PointFragment : Fragment() {
                     FirebaseUtils().fireStoreDatabase.collection("Teams")
                         .document(mAuth.currentUser!!.uid).set(hashMap).addOnSuccessListener {
                             binding.progressBar.visibility = View.GONE
-                            erorDialog("data added")
+                            erorDialog("data saved")
                         }
                 } else {
                     binding.progressBar.visibility = View.GONE

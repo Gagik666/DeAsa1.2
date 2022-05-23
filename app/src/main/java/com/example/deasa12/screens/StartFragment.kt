@@ -39,6 +39,8 @@ class StartFragment : Fragment() {
                     R.id.itemSetings -> findNavController().navigate(R.id.action_startFragment_to_setingsFragment)
                     R.id.itemRating -> findNavController().navigate(R.id.action_startFragment_to_ratingFragment)
                     R.id.itemUsers -> findNavController().navigate(R.id.action_startFragment_to_usersFragment)
+                    R.id.itemHelp -> findNavController().navigate(R.id.action_startFragment_to_helpFragment)
+                    R.id.itemProfil -> findNavController().navigate(R.id.action_startFragment_to_profilFragment)
                 }
 
                 true

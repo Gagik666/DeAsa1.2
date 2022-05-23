@@ -17,6 +17,7 @@ class UsersAdapter(
         fun bind(user: UserModel) = with(binding) {
             tvFirstname.text = user.firstName
             tvLastName.text = user.lastName
+
             when (user.rating) {
                 1 -> {
                     imgStar1.setImageResource(R.drawable.ic_star_rating_activ)
