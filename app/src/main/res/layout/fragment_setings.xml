@@ -5,18 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/baxgraund_fon"
-    android:padding="25dp"
+
     tools:context=".screens.SetingsFragment">
 
+    <LinearLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2bbd7e"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvProfil"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:id="@+id/imgProfil"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#2bbd7e"
+                android:src="@drawable/ic_user" />
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FirstName LastName"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:textColor="#2E3A2D"
+            android:textSize="18sp"/>
+
+
+    </LinearLayout>
 
     <ImageView
-        android:id="@+id/imgProfil"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_user"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/imgAddphoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_photo"
+        android:layout_marginTop="-15dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader"/>
+
 
     <TextView
         android:id="@+id/tvSetings"
@@ -28,20 +68,20 @@
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgProfil"/>
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
 
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flowLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="invisible"
         android:clickable="true"
         android:focusable="true"
+        android:orientation="horizontal"
+        android:visibility="invisible"
         app:constraint_referenced_ids="imgLogIn,tvLogIn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSetings"/>
+        app:layout_constraintTop_toBottomOf="@id/tvSetings" />
 
     <ImageView
         android:id="@+id/imgLogIn"
@@ -50,7 +90,7 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/ic_log_in"
         app:layout_constraintStart_toStartOf="@id/flowLogIn"
-        app:layout_constraintTop_toTopOf="@id/flowLogIn"/>
+        app:layout_constraintTop_toTopOf="@id/flowLogIn" />
 
     <TextView
         android:id="@+id/tvLogIn"
@@ -69,13 +109,13 @@
         android:id="@+id/flowLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="invisible"
         android:clickable="true"
         android:focusable="true"
+        android:orientation="horizontal"
+        android:visibility="invisible"
         app:constraint_referenced_ids="imgLogOut,tvlogOut"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSetings"/>
+        app:layout_constraintTop_toBottomOf="@id/tvSetings" />
 
     <ImageView
         android:id="@+id/imgLogOut"
@@ -84,7 +124,7 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/ic_log_out"
         app:layout_constraintStart_toStartOf="@id/flowLogOut"
-        app:layout_constraintTop_toTopOf="@id/flowLogOut"/>
+        app:layout_constraintTop_toTopOf="@id/flowLogOut" />
 
     <TextView
         android:id="@+id/tvlogOut"
@@ -96,82 +136,18 @@
         android:textColor="#2E3A2D"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@id/imgLogOut"
-        app:layout_constraintTop_toTopOf="@id/flowLogOut"/>
+        app:layout_constraintTop_toTopOf="@id/flowLogOut" />
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flowInterval"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginTop="28dp"
-        app:constraint_referenced_ids="imgTimer,tvInterval"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flowLogOut"/>
-
-    <ImageView
-        android:id="@+id/imgTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_timer"
-        app:layout_constraintStart_toStartOf="@id/flowInterval"
-        app:layout_constraintTop_toTopOf="@id/flowInterval"/>
-
-    <TextView
-        android:id="@+id/tvInterval"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Interval"
-        android:textColor="#2E3A2D"
-        android:textSize="24sp"
-        android:layout_marginStart="32dp"
-        app:layout_constraintStart_toEndOf="@id/imgTimer"
-        app:layout_constraintTop_toTopOf="@id/imgTimer"/>
-
-    <RadioGroup
-        android:id="@+id/rdGrupSetings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="28dp"
-        android:paddingStart="24dp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/tvInterval"
-        app:layout_constraintStart_toStartOf="@id/tvInterval">
-
-        <RadioButton
-            android:id="@+id/rdBtn60Sec"
-            android:text="60 sec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <RadioButton
-            android:id="@+id/rdBtn90sec"
-            android:text="90 sec"
-            android:checked="true"
-            android:layout_marginVertical="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <RadioButton
-            android:id="@+id/rdBtn120sec"
-            android:text="120 sec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </RadioGroup>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#2bbd7e"
         android:text="save"
         android:textSize="14sp"
         android:textStyle="bold"
         app:cornerRadius="50dp"
-        android:backgroundTint="#2bbd7e"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RegistrationFragment : Fragment() {
@@ -85,7 +86,8 @@ class RegistrationFragment : Fragment() {
                             val hashMap = hashMapOf<String, Any>(
                                 "firstName" to binding.edFirstName.text.toString(),
                                 "lastName" to binding.edLastName.text.toString(),
-                                "email" to binding.edEmail.text.toString()
+                                "email" to binding.edEmail.text.toString(),
+                                "imgageId" to "..."
                             )
 
                             firebaseDatabase.collection("users").document(firbaseUser!!.uid)

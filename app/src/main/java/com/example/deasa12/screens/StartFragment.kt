@@ -1,5 +1,6 @@
 package com.example.deasa12.screens
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,11 +35,24 @@ class StartFragment : Fragment() {
                 binding.drawerLayout.openDrawer((GravityCompat.START))
             }
 
+
             nvMenu.setNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.itemSetings -> findNavController().navigate(R.id.action_startFragment_to_setingsFragment)
-                    R.id.itemRating -> findNavController().navigate(R.id.action_startFragment_to_ratingFragment)
-                    R.id.itemUsers -> findNavController().navigate(R.id.action_startFragment_to_usersFragment)
+                    R.id.itemRating -> {
+                        if (mAuth.currentUser != null) {
+                            findNavController().navigate(R.id.action_startFragment_to_ratingFragment)
+                        } else {
+                            erorDialog("You are not registered")
+                        }
+                    }
+                    R.id.itemUsers -> {
+                        if (mAuth.currentUser != null) {
+                            findNavController().navigate(R.id.action_startFragment_to_usersFragment)
+                        } else {
+                            erorDialog("You are not registered")
+                        }
+                    }
                     R.id.itemHelp -> findNavController().navigate(R.id.action_startFragment_to_helpFragment)
                 }
 
@@ -64,6 +78,13 @@ class StartFragment : Fragment() {
             findNavController().navigate(R.id.action_startFragment_to_selectTeamFragment)
         }
 
+    }
+
+    fun erorDialog(title: String) {
+        val bulder = AlertDialog.Builder(context)
+        bulder.setTitle(title)
+        bulder.setPositiveButton("Ok") { dialog, i -> }
+        bulder.show()
     }
 
 }

@@ -1,11 +1,13 @@
 package com.example.deasa12.screens
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 
 import androidx.navigation.fragment.findNavController
 import com.example.deasa12.`object`.dataList.DataList
@@ -125,6 +127,10 @@ class PointFragment : Fragment() {
             DataList.teamList[0].team = "Team 1"
             DataList.teamList[1].team = "Team 2"
             DataList.queueList[0].queue = 1
+            DataList.tempList.clear()
+            Values.p = 0
+            Values.start = -5
+            Values.end = 0
         }
 
     }

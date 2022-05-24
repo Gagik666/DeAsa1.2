@@ -1,6 +1,7 @@
 package com.example.deasa12.screens
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -39,6 +40,7 @@ class DeAsaStoageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         deAsaViewModel = ViewModelProvider(this).get(DeAsaViewModel::class.java)
         getSingerTempList()
+
         deAsaViewModel.liveDataTimer.observe(viewLifecycleOwner, Observer {
             binding.tvSeconds.text = it
             if (it.toString().toInt() == 0) {
@@ -46,47 +48,66 @@ class DeAsaStoageFragment : Fragment() {
                 DataList.tempList.clear()
             }
         })
-
         queue = DataList.queueList[0].queue
+
         if (queue == 1 || queue == 3) {
             binding.tvTeam.text = DataList.teamList[0].team
-            binding.tvPoint.text = "Point ${DataList.teamList[0].point}"
-            DataList.teamList[0].point += point
+            deAsaViewModel.liveDataPoint0.observe(viewLifecycleOwner, Observer {
+                binding.tvTeam.text = DataList.teamList[0].team
+                binding.tvPoint.text = "Point $it "
+            })
         } else {
             binding.tvTeam.text = DataList.teamList[1].team
-            binding.tvPoint.text = "Point ${DataList.teamList[1].point}"
-            DataList.teamList[1].point += point
+            deAsaViewModel.liveDataPoint1.observe(viewLifecycleOwner, Observer {
+                binding.tvTeam.text = DataList.teamList[1].team
+                binding.tvPoint.text = "Point $it "
+            })
         }
 
         binding.rvSinger.layoutManager = LinearLayoutManager(this.context)
-        x = DataList.tempList.toMutableSet().toMutableList().size
-        singerAdapter = SingerAdapter(DataList.tempList.toMutableSet().toMutableList()) {
+        x = DataList.tempList.size
+        singerAdapter = SingerAdapter(DataList.tempList) {
+            Values.p++
+            if (Values.p == DataList.singerList.size - 6) {
+                findNavController().navigate(R.id.action_deAsaStoageFragment_to_pointFragment)
+                erorDialog("Sorry, the singers' names have expired")
+            }
             if (it) point++ else point--
-            binding.tvPoint.text = "Point $point  "
             if (queue == 1 || queue == 3) {
                 binding.tvTeam.text = DataList.teamList[0].team
-                binding.tvPoint.text = "Point ${DataList.teamList[0].point + 1}"
-                if (it) DataList.teamList[0].point += 1 else DataList.teamList[0].point -= 1
+                binding.tvPoint.text = "Point ${DataList.teamList[0].point + 1} "
+                deAsaViewModel.updatePoint0(it)
             } else {
                 binding.tvTeam.text = DataList.teamList[1].team
-                binding.tvPoint.text = "Point ${DataList.teamList[1].point + 1}"
-                if (it) DataList.teamList[1].point += 1 else DataList.teamList[1].point -= 1
+                binding.tvPoint.text = "Point ${DataList.teamList[1].point + 1} "
+                deAsaViewModel.updatePoint1(it)
             }
             if (point == x) {
                 recreate(context as Activity)
                 DataList.tempList.clear()
+
             }
         }
         binding.rvSinger.adapter = singerAdapter
     }
-    fun getSingerTempList(): MutableList<String> {
-        for (i in 1..5) {
-            val randomSinger = (0..100).random()
-            DataList.tempList.add(DataList.singerList[randomSinger])
+
+
+    fun getSingerTempList() {
+        Values.start += 6
+        Values.end += 6
+        for (i in Values.start..Values.end) {
+            DataList.tempList.add(DataList.singerList[i])
+
         }
-        return DataList.tempList
+
     }
 
+    fun erorDialog(title: String) {
+        val bulder = AlertDialog.Builder(context)
+        bulder.setTitle(title)
+        bulder.setPositiveButton("Ok") { dialog, i -> }
+        bulder.show()
+    }
 
 
 }

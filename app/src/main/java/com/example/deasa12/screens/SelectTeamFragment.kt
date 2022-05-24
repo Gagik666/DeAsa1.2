@@ -44,6 +44,12 @@ class SelectTeamFragment : Fragment() {
 
             btnStart.setOnClickListener {
                 DataList.singerList.shuffle()
+                DataList.tempList.clear()
+                when(binding.rdGrupSetings.checkedRadioButtonId) {
+                    R.id.rdBtn60Sec -> Values.timer = 60
+                    R.id.rdBtn90sec -> Values.timer = 90
+                    R.id.rdBtn120sec -> Values.timer = 120
+                }
                 findNavController().navigate(R.id.action_selectTeamFragment_to_deAsaStoageFragment)
             }
 
@@ -53,7 +59,7 @@ class SelectTeamFragment : Fragment() {
             findNavController().navigate(R.id.action_selectTeamFragment_to_teamDialogFragment)
         }
 
-        binding.tvRoundSec.text  = "${Values.timer} sec "
+
 
     }
 
