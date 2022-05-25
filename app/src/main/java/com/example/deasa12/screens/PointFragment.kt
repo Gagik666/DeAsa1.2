@@ -36,10 +36,6 @@ class PointFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
 
-
-
-
-
         if (mAuth.currentUser != null) {
             FirebaseUtils().fireStoreDatabase.collection("Teams")
                 .document(mAuth.currentUser!!.uid).get().addOnSuccessListener { querySnapshot ->

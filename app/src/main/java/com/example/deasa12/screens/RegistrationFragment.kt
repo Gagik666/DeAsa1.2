@@ -59,7 +59,8 @@ class RegistrationFragment : Fragment() {
                             val hashMap = hashMapOf<String, Any>(
                                 "firstName" to binding.edFirstName.text.toString(),
                                 "lastName" to binding.edLastName.text.toString(),
-                                "email" to binding.edEmail.text.toString()
+                                "email" to binding.edEmail.text.toString(),
+                                "imgageId" to "https://i.imgur.com/DvpvklR.png"
                             )
 
                             firebaseDatabase.collection("users").document(firbaseUser!!.uid)
@@ -87,7 +88,7 @@ class RegistrationFragment : Fragment() {
                                 "firstName" to binding.edFirstName.text.toString(),
                                 "lastName" to binding.edLastName.text.toString(),
                                 "email" to binding.edEmail.text.toString(),
-                                "imgageId" to "..."
+                                "imgageId" to "https://i.imgur.com/DvpvklR.png"
                             )
 
                             firebaseDatabase.collection("users").document(firbaseUser!!.uid)

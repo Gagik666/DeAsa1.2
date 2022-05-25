@@ -1,6 +1,7 @@
 package com.example.deasa12.screens
 
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -21,14 +22,17 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
 
 class SetingsFragment : Fragment() {
     lateinit var binding: FragmentSetingsBinding
     private lateinit var mAuth: FirebaseAuth
-    lateinit var mStorage: StorageReference
+    lateinit var imgId: String
     lateinit var imgProfil: ImageView
     lateinit var upLoadUri: Uri
+    lateinit var dataFirstName: String
+    lateinit var dataLastName: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,21 +58,27 @@ class SetingsFragment : Fragment() {
             }
         }
 
-        binding.btnSave.setOnClickListener {
-//            val downLoadUrlTask =
-//                FirebaseUtils().mStaorageRef.child("users/profilPic${FirebaseUtils().uid}.png").downloadUrl
-//            downLoadUrlTask.addOnSuccessListener {
-//                Toast.makeText(context, "$it", Toast.LENGTH_LONG).show()
-//            }.addOnFailureListener {
-//                Toast.makeText(context, "error downLoad", Toast.LENGTH_SHORT).show()
-//            }
 
-            val updateHasMap =  hashMapOf<String, Any>(
-                "firstName" to "binding.edFirstName.text.toString()",
+
+        binding.btnSave.setOnClickListener {
+            val downLoadUrlTask =
+                FirebaseUtils().mStaorageRef.child("users/profilPic${System.currentTimeMillis()}.png").downloadUrl
+            downLoadUrlTask.addOnSuccessListener {
+                Toast.makeText(context, "error downLoad", Toast.LENGTH_SHORT).show()
+
+            }.addOnFailureListener {
+                imgId = it.toString()
+                binding.tvSetings.text = imgId
+                Toast.makeText(context, "$it", Toast.LENGTH_LONG).show()
+            }
+
+            val updateHasMap = hashMapOf<String, Any>(
+                "firstName" to imgId,
             )
 
             FirebaseUtils().fireStoreDatabase.collection("users").document(FirebaseUtils().uid)
                 .update(updateHasMap).addOnSuccessListener {
+
                     Toast.makeText(context, "stacvec", Toast.LENGTH_SHORT).show()
                 }
         }
@@ -82,19 +92,36 @@ class SetingsFragment : Fragment() {
         }
 
         binding.imgAddphoto.setOnClickListener {
-            getImage()
+            if (mAuth.currentUser != null) {
+                getImage()
+            } else {
+                erorDialog("You are not registered")
+            }
         }
-
-
 
         binding.imgProfil.setOnClickListener {
             upLoadImage(upLoadUri)
+        }
+
+        if (mAuth.currentUser != null) {
+            FirebaseUtils().fireStoreDatabase.collection("users")
+                .document(mAuth.currentUser!!.uid).get()
+                .addOnSuccessListener { querySnapshot ->
+                    dataFirstName = querySnapshot.data?.get("firstName").toString()
+                    dataLastName = querySnapshot.data?.get("lastName").toString()
+                    imgId = querySnapshot.data?.get("imgageId").toString()
+                    binding.tvUserName.text = "$dataFirstName $dataLastName"
+                    binding.tvSetings.text = imgId
+                    Picasso.get().load(imgId).into(binding.imgProfil);
+                }
+        } else {
+            binding.tvUserName.text = "There is no user"
         }
     }
 
     fun upLoadImage(imageUri: Uri) {
 
-        val imageFileName = "users/profilPic${FirebaseUtils().uid}.png"
+        val imageFileName = "users/profilPic${System.currentTimeMillis()}.png"
         val upLoadTask = FirebaseUtils().mStaorageRef.child(imageFileName).putFile(imageUri)
         upLoadTask.addOnSuccessListener {
             Toast.makeText(context, "stacvrc", Toast.LENGTH_SHORT).show()
@@ -103,6 +130,8 @@ class SetingsFragment : Fragment() {
         }.addOnFailureListener {
             Toast.makeText(context, "eror", Toast.LENGTH_SHORT).show()
         }
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -119,11 +148,19 @@ class SetingsFragment : Fragment() {
     }
 
 
+
+
     fun getImage() {
         val intentChuser = Intent()
         intentChuser.type = "image/*"
         intentChuser.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intentChuser, 1)
+    }
+    fun erorDialog(title: String) {
+        val bulder = AlertDialog.Builder(context)
+        bulder.setTitle(title)
+        bulder.setPositiveButton("Ok") { dialog, i -> }
+        bulder.show()
     }
 
 }
