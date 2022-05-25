@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.deasa12.R
@@ -18,6 +19,7 @@ class RatingFragment : Fragment() {
     var rating = 0
     lateinit var dataFirstName: String
     lateinit var dataLastName: String
+    lateinit var imgId: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -80,6 +82,7 @@ class RatingFragment : Fragment() {
                     .addOnSuccessListener { querySnapshot ->
                         dataFirstName = querySnapshot.data?.get("firstName").toString()
                         dataLastName = querySnapshot.data?.get("lastName").toString()
+                        imgId = querySnapshot.data?.get("imgageId").toString()
                     }
             }
             btnSave.setOnClickListener {
@@ -88,7 +91,9 @@ class RatingFragment : Fragment() {
                 val hashMap = hashMapOf<String, Any>(
                     "firstName" to dataFirstName,
                     "lastName" to dataLastName,
+                    "imgageId" to imgId,
                     "rating" to rating
+
                 )
 
                 if (mAuth.currentUser != null) {

@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.deasa12.R
 import com.example.deasa12.databinding.ItemUsersBinding
 import com.example.deasa12.models.UserModel
+import com.example.deasa12.utils.FirebaseUtils
+import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 
 class UsersAdapter(
     private val userList: MutableList<UserModel>,
@@ -17,8 +20,7 @@ class UsersAdapter(
         fun bind(user: UserModel) = with(binding) {
             tvFirstname.text = user.firstName
             tvLastName.text = user.lastName
-            tvTeam1Name.text = user.Team1Name
-
+            Picasso.get().load(user.imgId).into(imgUser)
             when (user.rating) {
                 1 -> {
                     imgStar1.setImageResource(R.drawable.ic_star_rating_activ)

@@ -43,6 +43,7 @@ class UsersFragment : Fragment() {
                             it.data["firstName"].toString(),
                             it.data["lastName"].toString(),
                             it.data["rating"].toString().toInt(),
+                            it.data["imgageId"].toString()
                         )
                     )
                 }

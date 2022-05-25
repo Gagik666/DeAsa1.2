@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.deasa12.R
+import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.databinding.FragmentRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -60,7 +61,8 @@ class RegistrationFragment : Fragment() {
                                 "firstName" to binding.edFirstName.text.toString(),
                                 "lastName" to binding.edLastName.text.toString(),
                                 "email" to binding.edEmail.text.toString(),
-                                "imgageId" to "https://i.imgur.com/DvpvklR.png"
+                                "password" to binding.edPassword.text.toString(),
+                                "imgageId" to Values.IMAGE_URL
                             )
 
                             firebaseDatabase.collection("users").document(firbaseUser!!.uid)
@@ -88,7 +90,8 @@ class RegistrationFragment : Fragment() {
                                 "firstName" to binding.edFirstName.text.toString(),
                                 "lastName" to binding.edLastName.text.toString(),
                                 "email" to binding.edEmail.text.toString(),
-                                "imgageId" to "https://i.imgur.com/DvpvklR.png"
+                                "password" to binding.edPassword.text.toString(),
+                                "imgageId" to Values.IMAGE_URL
                             )
 
                             firebaseDatabase.collection("users").document(firbaseUser!!.uid)
