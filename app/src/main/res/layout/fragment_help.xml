@@ -3,12 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/baxgraund_fon"
+    android:padding="24dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.HelpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+   <com.google.android.material.card.MaterialCardView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:cardCornerRadius="32dp"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintEnd_toEndOf="parent">
+
+       <VideoView
+           android:id="@+id/vvHelp"
+           android:layout_width="match_parent"
+           android:layout_height="300dp" />
+
+   </com.google.android.material.card.MaterialCardView>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

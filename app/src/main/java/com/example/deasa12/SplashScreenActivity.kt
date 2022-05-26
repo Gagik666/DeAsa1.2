@@ -16,6 +16,7 @@ class SplashScreenActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.Default) {
             changeSizeText()
         }
+        Values.vidoHelp = true
     }
 
     private suspend fun changeSizeText() {
