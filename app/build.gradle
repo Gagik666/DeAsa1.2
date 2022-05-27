@@ -4,6 +4,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id("androidx.navigation.safeargs.kotlin")
     id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
 
 
 }
@@ -69,7 +70,12 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
 
-
+// Room components
+    implementation "androidx.room:room-runtime:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2"
+    implementation "androidx.room:room-ktx:2.4.2"
+    androidTestImplementation "androidx.room:room-testing:2.4.2"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
 
 
 }

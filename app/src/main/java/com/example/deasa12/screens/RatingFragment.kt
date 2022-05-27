@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.deasa12.R
+import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.databinding.FragmentRatingBinding
 import com.example.deasa12.utils.FirebaseUtils
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +21,8 @@ class RatingFragment : Fragment() {
     lateinit var dataFirstName: String
     lateinit var dataLastName: String
     lateinit var imgId: String
+    lateinit var list: MutableList<String>
+    lateinit var size: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -76,15 +79,7 @@ class RatingFragment : Fragment() {
                 imgStar5.setImageResource(R.drawable.ic_activ_star)
                 rating = 5
             }
-            if (mAuth.currentUser != null) {
-                FirebaseUtils().fireStoreDatabase.collection("users")
-                    .document(mAuth.currentUser!!.uid).get()
-                    .addOnSuccessListener { querySnapshot ->
-                        dataFirstName = querySnapshot.data?.get("firstName").toString()
-                        dataLastName = querySnapshot.data?.get("lastName").toString()
-                        imgId = querySnapshot.data?.get("imgageId").toString()
-                    }
-            }
+
             btnSave.setOnClickListener {
 
                 progressBar.visibility = View.VISIBLE
@@ -105,7 +100,41 @@ class RatingFragment : Fragment() {
                         }
                 }
             }
+
+
+            if (mAuth.currentUser != null) {
+                FirebaseUtils().fireStoreDatabase.collection("users")
+                    .document(mAuth.currentUser!!.uid).get()
+                    .addOnSuccessListener { querySnapshot ->
+                        dataFirstName = querySnapshot.data?.get("firstName").toString()
+                        dataLastName = querySnapshot.data?.get("lastName").toString()
+                        imgId = querySnapshot.data?.get("imgageId").toString()
+                    }
+            }
+
+
+            btntst.setOnClickListener {
+                if (mAuth.currentUser != null) {
+                    FirebaseUtils().fireStoreDatabase.collection("Singers")
+                        .document("aOtO6kJ2U78ESDFGI4gw").get()
+                        .addOnSuccessListener {
+//                            size = it.data?.size.toString()
+//                            for (i in 0 until size.toInt()) {
+//                                list.add(it.data?.get(i.toString()).toString())
+//                            }
+                            
+                            it.data?.forEach { 
+                                list.add(it.toString())
+                            }
+                        }
+                }
+                Toast.makeText(context, "$", Toast.LENGTH_SHORT).show()
+            }
+
+
         }
+
+
     }
 
 }
