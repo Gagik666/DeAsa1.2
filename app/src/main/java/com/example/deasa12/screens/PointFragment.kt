@@ -69,7 +69,7 @@ class PointFragment : Fragment() {
         }
         binding.btnPlay.setOnClickListener {
             DataList.queueList[0].queue += 1
-            DataList.singerList.shuffle()
+            DataList.listSingeer.shuffle()
             findNavController().navigate(R.id.action_pointFragment_to_deAsaStoageFragment)
         }
 
@@ -129,6 +129,12 @@ class PointFragment : Fragment() {
             Values.end = 0
         }
 
+        if (Values.lisIsEmpty) {
+            erorDialog("Sorry, the singers' names have expired")
+            binding.btnAgain.visibility = View.VISIBLE
+            binding.btnPlay.visibility = View.INVISIBLE
+        }
+
     }
 
     fun erorDialog(title: String) {
@@ -137,6 +143,5 @@ class PointFragment : Fragment() {
         bulder.setPositiveButton("Ok") { dialog, i -> }
         bulder.show()
     }
-
 
 }

@@ -5,23 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.deasa12.R
 import com.example.deasa12.`object`.dataList.DataList
+import com.example.deasa12.database.database.SingerInfo
 import com.example.deasa12.databinding.FragmentRatingBinding
 import com.example.deasa12.utils.FirebaseUtils
+import com.example.studentapp.database.UserDatabase
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.*
 
+@DelicateCoroutinesApi
 class RatingFragment : Fragment() {
+
     lateinit var binding: FragmentRatingBinding
     private lateinit var mAuth: FirebaseAuth
     var rating = 0
     lateinit var dataFirstName: String
     lateinit var dataLastName: String
     lateinit var imgId: String
-    lateinit var list: MutableList<String>
+
     lateinit var size: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,8 +36,12 @@ class RatingFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
+        val tstList = mutableListOf<String>()
+        val tstList2 = mutableListOf<String>()
+        val db = UserDatabase.getDatabase(context?.applicationContext!!)
         binding.apply {
             imgStar1.setOnClickListener {
                 imgStar1.setImageResource(R.drawable.ic_activ_star)
@@ -113,28 +121,38 @@ class RatingFragment : Fragment() {
             }
 
 
-            btntst.setOnClickListener {
-                if (mAuth.currentUser != null) {
-                    FirebaseUtils().fireStoreDatabase.collection("Singers")
-                        .document("aOtO6kJ2U78ESDFGI4gw").get()
-                        .addOnSuccessListener {
-//                            size = it.data?.size.toString()
-//                            for (i in 0 until size.toInt()) {
-//                                list.add(it.data?.get(i.toString()).toString())
-//                            }
-                            
-                            it.data?.forEach { 
-                                list.add(it.toString())
-                            }
-                        }
-                }
-                Toast.makeText(context, "$", Toast.LENGTH_SHORT).show()
-            }
+
+//            GlobalScope.launch(Dispatchers.IO) {
+//
+////                tstList.forEach {
+////                    db.userDao().insertData(
+////                        SingerInfo(it)
+////                    )
+////                }
+//
+//                for (i in 1..tstList.size) {
+//                    db.userDao().insertData(SingerInfo(tstList[i]))
+//                }
+//
+////                db.userDao().getAll().forEach {
+////                    tstList2.add(it.name)
+////                }
+//
+//            }
+//
+//
+//            btntst.setOnClickListener {
+//                CoroutineScope(Dispatchers.IO).launch {
+//
+//                    Toast.makeText(context, "${db.userDao().getAll().size}", Toast.LENGTH_SHORT).show()
+//                }
+//            }
 
 
         }
 
-
     }
 
+
 }
+

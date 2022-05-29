@@ -93,20 +93,20 @@
 
         <RadioButton
             android:id="@+id/rdBtn60Sec"
-            android:text="60 sec"
+            android:text="45 sec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <RadioButton
             android:id="@+id/rdBtn90sec"
-            android:text="90 sec"
+            android:text="60 sec"
             android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <RadioButton
             android:id="@+id/rdBtn120sec"
-            android:text="120 sec"
+            android:text="75 sec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

@@ -2,9 +2,11 @@ package com.example.deasa12.database.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "singers")
+@Entity(tableName = "singers"
+)
 class SingerInfo(
     @ColumnInfo(name = "name") val name: String
 ) {

@@ -1,9 +1,8 @@
-package com.example.deasa12.viewModel
+package com.example.deasa12.utils.viewModel
 
 
 import android.app.Application
 import android.os.CountDownTimer
-import android.widget.Toast
 
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData

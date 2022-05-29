@@ -60,8 +60,8 @@ class SetingsFragment : Fragment() {
 
 
         binding.btnSave.setOnClickListener {
-//            getPhotoUrl()
-            getrVideUri()
+            getPhotoUrl()
+//            getrVideUri()
         }
 
 
@@ -76,8 +76,8 @@ class SetingsFragment : Fragment() {
 
         binding.imgAddphoto.setOnClickListener {
             if (mAuth.currentUser != null) {
-//                getImage()
-                getVideo()
+                getImage()
+//                getVideo()
             } else {
                 erorDialog("You are not registered")
             }
@@ -93,7 +93,7 @@ class SetingsFragment : Fragment() {
                     binding.tvSetingsEmail.text = querySnapshot.data?.get("email").toString()
                     binding.tvSetingsPassword.text = querySnapshot.data?.get("password").toString()
                     binding.tvUserName.text = "$dataFirstName $dataLastName"
-//                    Picasso.get().load(imgId).into(binding.imgProfil)
+                    Picasso.get().load(imgId).into(binding.imgProfil)
                 }
         } else {
             binding.tvUserName.text = "There is no user"
@@ -104,11 +104,8 @@ class SetingsFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1 && data != null && data.data != null) {
             if (resultCode == RESULT_OK) {
-
                 upLoadUri = data.data!!
                 binding.imgProfil.setImageURI(upLoadUri)
-                getPhotoUrl()
-
             }
         }
 
@@ -128,12 +125,12 @@ class SetingsFragment : Fragment() {
         startActivityForResult(intentChuser, 1)
     }
 
-    fun getVideo() {
-        val intentVideo = Intent()
-        intentVideo.type = "video/*"
-        intentVideo.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(intentVideo, 2)
-    }
+//    fun getVideo() {
+//        val intentVideo = Intent()
+//        intentVideo.type = "video/*"
+//        intentVideo.action = Intent.ACTION_GET_CONTENT
+//        startActivityForResult(intentVideo, 2)
+//    }
 
     fun erorDialog(title: String) {
         val bulder = AlertDialog.Builder(context)
@@ -166,27 +163,27 @@ class SetingsFragment : Fragment() {
 
     }
 
-    fun getrVideUri() {
-        val vidweoFileName = "video/helpVido.mp4"
-        val upLoadTask = FirebaseUtils().mStaorageRef.child(vidweoFileName)
-        upLoadTask.putFile(upLoadUri).addOnCompleteListener { Task1 ->
-            if (Task1.isSuccessful) {
-                upLoadTask.downloadUrl.addOnCompleteListener { Task2 ->
-                    if (Task2.isSuccessful) {
-                        val videoUri = Task2.result.toString()
-                        val updateHasMap = hashMapOf<String, Any>(
-                            "imgageId" to videoUri,
-                        )
-                        FirebaseUtils().fireStoreDatabase.collection("users")
-                            .document(FirebaseUtils().uid)
-                            .update(updateHasMap).addOnSuccessListener {
-                                binding.progressBar.visibility = View.GONE
-                            }
-                    }
-                }
-            }
-        }
-    }
+//    fun getrVideUri() {
+//        val vidweoFileName = "video/helpVido.mp4"
+//        val upLoadTask = FirebaseUtils().mStaorageRef.child(vidweoFileName)
+//        upLoadTask.putFile(upLoadUri).addOnCompleteListener { Task1 ->
+//            if (Task1.isSuccessful) {
+//                upLoadTask.downloadUrl.addOnCompleteListener { Task2 ->
+//                    if (Task2.isSuccessful) {
+//                        val videoUri = Task2.result.toString()
+//                        val updateHasMap = hashMapOf<String, Any>(
+//                            "imgageId" to videoUri,
+//                        )
+//                        FirebaseUtils().fireStoreDatabase.collection("users")
+//                            .document(FirebaseUtils().uid)
+//                            .update(updateHasMap).addOnSuccessListener {
+//                                binding.progressBar.visibility = View.GONE
+//                            }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     fun clickMore() {
         if (!isClick) {

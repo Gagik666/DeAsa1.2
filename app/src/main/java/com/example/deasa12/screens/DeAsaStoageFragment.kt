@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.app.ActivityCompat.recreate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,13 +16,16 @@ import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
 import com.example.deasa12.adapters.SingerAdapter
 import com.example.deasa12.databinding.FragmentDeAsaStoageBinding
-import com.example.deasa12.viewModel.DeAsaViewModel
+import com.example.deasa12.utils.FirebaseUtils
+import com.example.deasa12.utils.viewModel.DeAsaViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 
 class DeAsaStoageFragment : Fragment() {
     lateinit var binding: FragmentDeAsaStoageBinding
     lateinit var singerAdapter: SingerAdapter
     lateinit var deAsaViewModel: DeAsaViewModel
+    private lateinit var mAuth: FirebaseAuth
     var queue = 0
     var point = 0
     var x = 0
@@ -38,6 +40,7 @@ class DeAsaStoageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mAuth = FirebaseAuth.getInstance()
         deAsaViewModel = ViewModelProvider(this).get(DeAsaViewModel::class.java)
         getSingerTempList()
 
@@ -68,9 +71,11 @@ class DeAsaStoageFragment : Fragment() {
         x = DataList.tempList.size
         singerAdapter = SingerAdapter(DataList.tempList) {
             Values.p++
-            if (Values.p == DataList.singerList.size - 6) {
+            if (Values.p == DataList.listSingeer.size - 6) {
                 findNavController().navigate(R.id.action_deAsaStoageFragment_to_pointFragment)
-                erorDialog("Sorry, the singers' names have expired")
+
+                Values.lisIsEmpty = true
+
             }
             if (it) point++ else point--
             if (queue == 1 || queue == 3) {
@@ -89,6 +94,17 @@ class DeAsaStoageFragment : Fragment() {
             }
         }
         binding.rvSinger.adapter = singerAdapter
+
+        if (mAuth.currentUser != null) {
+            FirebaseUtils().fireStoreDatabase.collection("Singers")
+                .document("fByI386z9nPFY19rdTuU").get()
+                .addOnSuccessListener { Task ->
+                    for (i in 1..Task.data?.size!!) {
+                        DataList.listSingeer.add(Task.data!!["$i"].toString())
+                    }
+
+                }
+        }
     }
 
 
@@ -96,18 +112,13 @@ class DeAsaStoageFragment : Fragment() {
         Values.start += 6
         Values.end += 6
         for (i in Values.start..Values.end) {
-            DataList.tempList.add(DataList.singerList[i])
+            DataList.tempList.add(DataList.listSingeer[i])
 
         }
 
     }
 
-    fun erorDialog(title: String) {
-        val bulder = AlertDialog.Builder(context)
-        bulder.setTitle(title)
-        bulder.setPositiveButton("Ok") { dialog, i -> }
-        bulder.show()
-    }
+
 
 
 }
