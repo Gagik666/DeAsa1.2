@@ -1,5 +1,6 @@
 package com.example.deasa12.`object`.dataList
 
+import com.example.deasa12.database.database.SingerInfo
 import com.example.deasa12.models.Queue
 import com.example.deasa12.models.Teams
 

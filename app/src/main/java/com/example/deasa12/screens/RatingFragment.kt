@@ -16,7 +16,7 @@ import com.example.studentapp.database.UserDatabase
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.*
 
-@DelicateCoroutinesApi
+
 class RatingFragment : Fragment() {
 
     lateinit var binding: FragmentRatingBinding
@@ -39,9 +39,16 @@ class RatingFragment : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
-        val tstList = mutableListOf<String>()
-        val tstList2 = mutableListOf<String>()
-        val db = UserDatabase.getDatabase(context?.applicationContext!!)
+        val tstList = mutableListOf<SingerInfo>(
+            SingerInfo("a1"),
+            SingerInfo("a2"),
+            SingerInfo("a3"),
+            SingerInfo("a4"),
+            SingerInfo("a5"),
+            SingerInfo("a6")
+        )
+        val tstList2 = mutableListOf<SingerInfo>()
+
         binding.apply {
             imgStar1.setOnClickListener {
                 imgStar1.setImageResource(R.drawable.ic_activ_star)
@@ -119,35 +126,6 @@ class RatingFragment : Fragment() {
                         imgId = querySnapshot.data?.get("imgageId").toString()
                     }
             }
-
-
-
-//            GlobalScope.launch(Dispatchers.IO) {
-//
-////                tstList.forEach {
-////                    db.userDao().insertData(
-////                        SingerInfo(it)
-////                    )
-////                }
-//
-//                for (i in 1..tstList.size) {
-//                    db.userDao().insertData(SingerInfo(tstList[i]))
-//                }
-//
-////                db.userDao().getAll().forEach {
-////                    tstList2.add(it.name)
-////                }
-//
-//            }
-//
-//
-//            btntst.setOnClickListener {
-//                CoroutineScope(Dispatchers.IO).launch {
-//
-//                    Toast.makeText(context, "${db.userDao().getAll().size}", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-
 
         }
 

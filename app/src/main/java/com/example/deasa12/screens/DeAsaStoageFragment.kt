@@ -95,16 +95,7 @@ class DeAsaStoageFragment : Fragment() {
         }
         binding.rvSinger.adapter = singerAdapter
 
-        if (mAuth.currentUser != null) {
-            FirebaseUtils().fireStoreDatabase.collection("Singers")
-                .document("fByI386z9nPFY19rdTuU").get()
-                .addOnSuccessListener { Task ->
-                    for (i in 1..Task.data?.size!!) {
-                        DataList.listSingeer.add(Task.data!!["$i"].toString())
-                    }
 
-                }
-        }
     }
 
 

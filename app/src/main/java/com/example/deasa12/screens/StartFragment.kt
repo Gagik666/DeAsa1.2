@@ -11,11 +11,19 @@ import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.navigation.fragment.findNavController
 import com.example.deasa12.R
+import com.example.deasa12.`object`.dataList.DataList
+import com.example.deasa12.database.database.SingerInfo
 import com.example.deasa12.databinding.FragmentStartBinding
 import com.example.deasa12.utils.FirebaseUtils
+import com.example.studentapp.database.UserDatabase
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
+@DelicateCoroutinesApi
 class StartFragment : Fragment() {
     lateinit var binding: FragmentStartBinding
     private lateinit var mAuth: FirebaseAuth
@@ -32,6 +40,7 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val db = UserDatabase.getDatabase(context?.applicationContext!!)
         mAuth = FirebaseAuth.getInstance()
         binding.apply {
             imgMenu.setOnClickListener {
@@ -84,6 +93,31 @@ class StartFragment : Fragment() {
             findNavController().navigate(R.id.action_startFragment_to_selectTeamFragment)
         }
 
+
+
+            FirebaseUtils().fireStoreDatabase.collection("Singers")
+                .document("fByI386z9nPFY19rdTuU").get()
+                .addOnSuccessListener { Task ->
+//                    for (i in 1..Task.data?.size!!) {
+////                        DataList.listSingeer.add(Task.data!!["$i"].toString())
+//                        db.userDao().insertData(
+//                            SingerInfo(Task.data[i])
+//                        )
+//                    }
+                    CoroutineScope(Dispatchers.IO).launch {
+                        Task.data?.forEach {
+                            db.userDao().insertData(
+                                SingerInfo(it.value.toString())
+                            )
+                        }
+
+                        db.userDao().getAll().forEach {
+                            DataList.listSingeer.add(it.name)
+                        }
+                    }
+
+
+                }
     }
 
     fun erorDialog(title: String) {
