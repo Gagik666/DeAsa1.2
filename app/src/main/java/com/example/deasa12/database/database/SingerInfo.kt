@@ -5,7 +5,10 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "singers"
+@Entity(tableName = "singers",
+    indices = [
+        Index("name", unique = true)
+    ]
 )
 class SingerInfo(
     @ColumnInfo(name = "name") val name: String

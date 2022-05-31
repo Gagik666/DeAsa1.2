@@ -49,6 +49,7 @@ class DeAsaStoageFragment : Fragment() {
             if (it.toString().toInt() == 0) {
                 findNavController().navigate(R.id.action_deAsaStoageFragment_to_pointFragment)
                 DataList.tempList.clear()
+                Values.lisIsEmpty = false
             }
         })
         queue = DataList.queueList[0].queue
@@ -73,7 +74,6 @@ class DeAsaStoageFragment : Fragment() {
             Values.p++
             if (Values.p == DataList.listSingeer.size - 6) {
                 findNavController().navigate(R.id.action_deAsaStoageFragment_to_pointFragment)
-
                 Values.lisIsEmpty = true
 
             }
@@ -108,8 +108,6 @@ class DeAsaStoageFragment : Fragment() {
         }
 
     }
-
-
 
 
 }

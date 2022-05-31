@@ -90,34 +90,34 @@ class StartFragment : Fragment() {
         }
 
         binding.btnPlayInTeams.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                db.userDao().getAll().forEach {
+                    DataList.listSingeer.add(it.name)
+                }
+            }
             findNavController().navigate(R.id.action_startFragment_to_selectTeamFragment)
         }
 
+        FirebaseUtils().fireStoreDatabase.collection("Singers")
+            .document("fByI386z9nPFY19rdTuU").get()
+            .addOnSuccessListener { Task ->
 
-
-            FirebaseUtils().fireStoreDatabase.collection("Singers")
-                .document("fByI386z9nPFY19rdTuU").get()
-                .addOnSuccessListener { Task ->
-//                    for (i in 1..Task.data?.size!!) {
-////                        DataList.listSingeer.add(Task.data!!["$i"].toString())
-//                        db.userDao().insertData(
-//                            SingerInfo(Task.data[i])
-//                        )
-//                    }
-                    CoroutineScope(Dispatchers.IO).launch {
-                        Task.data?.forEach {
+                CoroutineScope(Dispatchers.IO).launch {
+                    Task.data?.forEach {
+                        if (db.userDao().isNotExists(it.value.toString())) {
                             db.userDao().insertData(
                                 SingerInfo(it.value.toString())
                             )
                         }
-
-                        db.userDao().getAll().forEach {
-                            DataList.listSingeer.add(it.name)
-                        }
                     }
 
-
+//                        db.userDao().getAll().forEach {
+//                            DataList.listSingeer.add(it.name)
+//                        }
                 }
+
+
+            }
     }
 
     fun erorDialog(title: String) {

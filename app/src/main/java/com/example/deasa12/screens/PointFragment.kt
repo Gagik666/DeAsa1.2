@@ -52,7 +52,7 @@ class PointFragment : Fragment() {
 
         }
 
-        binding.tvShowhResult.setOnClickListener{
+        binding.tvShowhResult.setOnClickListener {
             binding.tvTeam1NameOlden.visibility = View.VISIBLE
             binding.tvTeam1PointOlden.visibility = View.VISIBLE
             binding.tvTeam2NamaeOlden.visibility = View.VISIBLE
@@ -64,8 +64,10 @@ class PointFragment : Fragment() {
         if (queue == 4) {
             binding.btnPlay.visibility = View.INVISIBLE
             binding.btnAgain.visibility = View.VISIBLE
-            binding.btnRefreshResults.visibility = View.VISIBLE
-            binding.tvShowhResult.visibility = View.VISIBLE
+            if (mAuth.currentUser != null) {
+                binding.btnRefreshResults.visibility = View.VISIBLE
+                binding.tvShowhResult.visibility = View.VISIBLE
+            }
         }
         binding.btnPlay.setOnClickListener {
             DataList.queueList[0].queue += 1
@@ -127,12 +129,15 @@ class PointFragment : Fragment() {
             Values.p = 0
             Values.start = -5
             Values.end = 0
+            DataList.listSingeer.clear()
         }
 
         if (Values.lisIsEmpty) {
             erorDialog("Sorry, the singers' names have expired")
             binding.btnAgain.visibility = View.VISIBLE
             binding.btnPlay.visibility = View.INVISIBLE
+            binding.btnRefreshResults.visibility = View.VISIBLE
+            binding.tvShowhResult.visibility = View.VISIBLE
         }
 
     }
