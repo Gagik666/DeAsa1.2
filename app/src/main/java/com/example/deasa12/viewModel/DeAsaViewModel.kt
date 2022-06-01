@@ -1,4 +1,4 @@
-package com.example.deasa12.utils.viewModel
+package com.example.deasa12.viewModel
 
 
 import android.app.Application

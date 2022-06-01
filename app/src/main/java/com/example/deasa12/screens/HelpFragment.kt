@@ -23,15 +23,22 @@ class HelpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mediaControlerHelp = MediaController(context)
-        if (Values.vidoHelp) {
-            binding.apply {
-                mediaControlerHelp.setAnchorView(vvHelp)
-                val onlineUrl = Uri.parse("https://firebasestorage.googleapis.com/v0/b/deasa12-431ef.appspot.com/o/video%2FhelpVido.mp4?alt=media&token=6b065a46-3132-4259-8b69-9067485c7f852121")
-                vvHelp.setMediaController(mediaControlerHelp)
-                vvHelp.setVideoURI(onlineUrl)
-                vvHelp.requestFocus()
-                vvHelp.start()
-            }
+
+        binding.tvAbout.append("Կարող եք ․․․\n")
+        binding.tvAbout.append(" .Գրանցվել պրոյեկտում\n")
+        binding.tvAbout.append(" .գանհատել պրոյեկտը\n")
+        binding.tvAbout.append(" .տեսնել ուրիշների գնահատականները\n")
+        binding.tvAbout.append(" .եթե գրանցվել եք հնարավորություն ունեք պահպանել խաղի արդյունքները նախորդի հետ համեմատելու համար\n")
+
+
+        binding.apply {
+            mediaControlerHelp.setAnchorView(vvHelp)
+            val onlineUrl =
+                Uri.parse("https://firebasestorage.googleapis.com/v0/b/deasa12-431ef.appspot.com/o/video%2FhelpVido.mp4?alt=media&token=2778c168-16eb-46ba-a1b6-d1c2d1e824d8")
+            vvHelp.setMediaController(mediaControlerHelp)
+            vvHelp.setVideoURI(onlineUrl)
+            vvHelp.requestFocus()
+            vvHelp.start()
         }
 
 

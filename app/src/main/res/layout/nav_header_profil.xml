@@ -12,6 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:cardCornerRadius="50dp"
+        android:background="#2bbd7e"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

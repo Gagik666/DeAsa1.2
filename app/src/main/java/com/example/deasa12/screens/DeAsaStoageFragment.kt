@@ -1,7 +1,6 @@
 package com.example.deasa12.screens
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,8 +15,7 @@ import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
 import com.example.deasa12.adapters.SingerAdapter
 import com.example.deasa12.databinding.FragmentDeAsaStoageBinding
-import com.example.deasa12.utils.FirebaseUtils
-import com.example.deasa12.utils.viewModel.DeAsaViewModel
+import com.example.deasa12.viewModel.DeAsaViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 

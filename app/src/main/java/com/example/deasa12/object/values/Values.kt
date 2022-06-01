@@ -7,6 +7,5 @@ object Values {
     var start = -5
     var end = 0
     var p = 0
-    var vidoHelp = false
     var lisIsEmpty = false
 }

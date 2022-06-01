@@ -64,16 +64,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tveror"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="* There is no such user"
-                android:textColor="@color/purple_700"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogIn"
@@ -92,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/registration"
-                android:textColor="@color/black"
+                android:textColor="#2E3A2D"
                 android:textSize="20sp" />
 
         </LinearLayout>

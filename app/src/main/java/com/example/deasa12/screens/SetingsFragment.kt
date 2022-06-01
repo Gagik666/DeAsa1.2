@@ -22,7 +22,6 @@ class SetingsFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     lateinit var imgId: String
     lateinit var upLoadUri: Uri
-    lateinit var upLoadVieoUri: Uri
     lateinit var dataFirstName: String
     lateinit var dataLastName: String
     var isClick = false
@@ -125,13 +124,6 @@ class SetingsFragment : Fragment() {
         startActivityForResult(intentChuser, 1)
     }
 
-//    fun getVideo() {
-//        val intentVideo = Intent()
-//        intentVideo.type = "video/*"
-//        intentVideo.action = Intent.ACTION_GET_CONTENT
-//        startActivityForResult(intentVideo, 2)
-//    }
-
     fun erorDialog(title: String) {
         val bulder = AlertDialog.Builder(context)
         bulder.setTitle(title)
@@ -163,27 +155,7 @@ class SetingsFragment : Fragment() {
 
     }
 
-//    fun getrVideUri() {
-//        val vidweoFileName = "video/helpVido.mp4"
-//        val upLoadTask = FirebaseUtils().mStaorageRef.child(vidweoFileName)
-//        upLoadTask.putFile(upLoadUri).addOnCompleteListener { Task1 ->
-//            if (Task1.isSuccessful) {
-//                upLoadTask.downloadUrl.addOnCompleteListener { Task2 ->
-//                    if (Task2.isSuccessful) {
-//                        val videoUri = Task2.result.toString()
-//                        val updateHasMap = hashMapOf<String, Any>(
-//                            "imgageId" to videoUri,
-//                        )
-//                        FirebaseUtils().fireStoreDatabase.collection("users")
-//                            .document(FirebaseUtils().uid)
-//                            .update(updateHasMap).addOnSuccessListener {
-//                                binding.progressBar.visibility = View.GONE
-//                            }
-//                    }
-//                }
-//            }
-//        }
-//    }
+
 
     fun clickMore() {
         if (!isClick) {

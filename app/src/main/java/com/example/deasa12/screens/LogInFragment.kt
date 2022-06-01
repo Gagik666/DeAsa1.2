@@ -46,7 +46,6 @@ class LogInFragment : Fragment() {
                 ).addOnCompleteListener { Task ->
                     if (Task.isSuccessful) {
                         binding.progressBar.visibility = View.GONE
-                        binding.tveror.visibility = View.GONE
                         findNavController().navigate(R.id.action_logInFragment_to_startFragment)
                     } else {
                         binding.progressBar.visibility = View.GONE

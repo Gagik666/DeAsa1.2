@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.deasa12.databinding.ActivitySplashScreenBinding
+
 import kotlinx.coroutines.*
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class SplashScreenActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.Default) {
             changeSizeText()
         }
-        Values.vidoHelp = true
+
     }
 
     private suspend fun changeSizeText() {

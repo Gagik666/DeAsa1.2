@@ -44,6 +44,13 @@ class PointFragment : Fragment() {
                     team2name = querySnapshot.data?.get("Team2Name").toString()
                     team2point = querySnapshot.data?.get("Team2Point").toString()
 
+                    if (querySnapshot.data?.get("Team1Name") == null) {
+                        binding.btnRefreshResults.text = "Add Data"
+                        binding.tvShowhResult.visibility = View.INVISIBLE
+                    } else {
+                        binding.btnRefreshResults.text = "Refresh Data"
+                    }
+
                     binding.tvTeam1NameOlden.text = team1name
                     binding.tvTeam1PointOlden.text = team1point
                     binding.tvTeam2NamaeOlden.text = team2name
