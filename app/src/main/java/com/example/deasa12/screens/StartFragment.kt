@@ -89,6 +89,14 @@ class StartFragment : Fragment() {
             name.text = "There is no user"
         }
 
+        FirebaseUtils().fireStoreDatabase.collection("Help").document("help").get()
+            .addOnSuccessListener { Task->
+                for (i in 1 ..Task.data?.size!!) {
+                    DataList.helpList.add(Task.data?.get("$i").toString())
+                }
+
+            }
+
         binding.btnPlayInTeams.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 db.userDao().getAll().forEach {

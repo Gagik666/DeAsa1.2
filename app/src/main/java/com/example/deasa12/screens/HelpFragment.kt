@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
+import android.widget.Toast
 import com.example.deasa12.R
+import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.databinding.FragmentHelpBinding
 
 class HelpFragment : Fragment() {
@@ -24,12 +26,15 @@ class HelpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mediaControlerHelp = MediaController(context)
 
-        binding.tvAbout.append("Կարող եք ․․․\n")
-        binding.tvAbout.append(" .Գրանցվել պրոյեկտում\n")
-        binding.tvAbout.append(" .գանհատել պրոյեկտը\n")
-        binding.tvAbout.append(" .տեսնել ուրիշների գնահատականները\n")
-        binding.tvAbout.append(" .եթե գրանցվել եք հնարավորություն ունեք պահպանել խաղի արդյունքները նախորդի հետ համեմատելու համար\n")
+//        binding.tvAbout.append("Կարող եք ․․․\n")
+//        binding.tvAbout.append(" .Գրանցվել պրոյեկտում\n")
+//        binding.tvAbout.append(" .գանհատել պրոյեկտը\n")
+//        binding.tvAbout.append(" .տեսնել ուրիշների գնահատականները\n")
+//        binding.tvAbout.append(" .եթե գրանցվել եք հնարավորություն ունեք պահպանել խաղի արդյունքները նախորդի հետ համեմատելու համար\n")
 
+        DataList.helpList.forEach {
+            binding.tvAbout.append("$it \n")
+        }
 
         binding.apply {
             mediaControlerHelp.setAnchorView(vvHelp)
@@ -40,9 +45,5 @@ class HelpFragment : Fragment() {
             vvHelp.requestFocus()
             vvHelp.start()
         }
-
-
     }
-
-
 }

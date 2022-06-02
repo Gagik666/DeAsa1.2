@@ -93,7 +93,6 @@ class DeAsaStoageFragment : Fragment() {
         }
         binding.rvSinger.adapter = singerAdapter
 
-
     }
 
 
