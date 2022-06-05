@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
 import com.example.deasa12.adapters.SingerAdapter
@@ -45,7 +46,7 @@ class DeAsaStoageFragment : Fragment() {
         deAsaViewModel.liveDataTimer.observe(viewLifecycleOwner, Observer {
             binding.tvSeconds.text = it
             if (it.toString().toInt() == 0) {
-                findNavController().navigate(R.id.action_deAsaStoageFragment_to_pointFragment)
+                openFragment(R.id.action_deAsaStoageFragment_to_pointFragment)
                 DataList.tempList.clear()
                 Values.lisIsEmpty = false
             }
@@ -71,7 +72,7 @@ class DeAsaStoageFragment : Fragment() {
         singerAdapter = SingerAdapter(DataList.tempList) {
             Values.p++
             if (Values.p == DataList.listSingeer.size - 6) {
-                findNavController().navigate(R.id.action_deAsaStoageFragment_to_pointFragment)
+                openFragment(R.id.action_deAsaStoageFragment_to_pointFragment)
                 Values.lisIsEmpty = true
 
             }

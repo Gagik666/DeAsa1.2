@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 
 import androidx.navigation.fragment.findNavController
+import com.example.deasa12.Extensions.checkForInternet
+import com.example.deasa12.Extensions.dialog
+import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentPointBinding
@@ -79,7 +82,7 @@ class PointFragment : Fragment() {
         binding.btnPlay.setOnClickListener {
             DataList.queueList[0].queue += 1
             DataList.listSingeer.shuffle()
-            findNavController().navigate(R.id.action_pointFragment_to_deAsaStoageFragment)
+           openFragment(R.id.action_pointFragment_to_deAsaStoageFragment)
         }
 
         binding.tvTeam1Point.text = DataList.teamList[0].point.toString()
@@ -88,9 +91,9 @@ class PointFragment : Fragment() {
         binding.tvTeam2Namae.text = DataList.teamList[1].team
 
         binding.btnRefreshResults.setOnClickListener {
-            if (context?.let { it1 -> !Funs.checkForInternet(it1) } == true) {
+            if (context?.let { it1 -> !checkForInternet(it1) } == true) {
                 binding.progressBar.visibility = View.GONE
-                erorDialog("There is not conection internet")
+                dialog("There is not conection internet")
             } else {
                 binding.progressBar.visibility = View.VISIBLE
                 val hashMap = hashMapOf<String, Any>(
@@ -104,11 +107,11 @@ class PointFragment : Fragment() {
                     FirebaseUtils().fireStoreDatabase.collection("Teams")
                         .document(mAuth.currentUser!!.uid).set(hashMap).addOnSuccessListener {
                             binding.progressBar.visibility = View.GONE
-                            erorDialog("data updated")
+                            dialog("data updated")
                         }
                 } else {
                     binding.progressBar.visibility = View.GONE
-                    erorDialog("You are not Registered")
+                    dialog("You are not Registered")
                 }
             }
 
@@ -126,7 +129,7 @@ class PointFragment : Fragment() {
 
 
         binding.btnAgain.setOnClickListener {
-            findNavController().navigate(R.id.action_pointFragment_to_startFragment)
+            openFragment(R.id.action_pointFragment_to_startFragment)
             DataList.teamList[0].point = 0
             DataList.teamList[1].point = 0
             DataList.teamList[0].team = "Team 1"
@@ -140,7 +143,7 @@ class PointFragment : Fragment() {
         }
 
         if (Values.lisIsEmpty) {
-            erorDialog("Sorry, the singers' names have expired")
+            dialog("Sorry, the singers' names have expired")
             binding.btnAgain.visibility = View.VISIBLE
             binding.btnPlay.visibility = View.INVISIBLE
             binding.btnRefreshResults.visibility = View.VISIBLE
@@ -148,12 +151,4 @@ class PointFragment : Fragment() {
         }
 
     }
-
-    fun erorDialog(title: String) {
-        val bulder = AlertDialog.Builder(context)
-        bulder.setTitle(title)
-        bulder.setPositiveButton("Ok") { dialog, i -> }
-        bulder.show()
-    }
-
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentSelectTeamBinding
@@ -31,37 +32,36 @@ class SelectTeamFragment : Fragment() {
             tvTeam1.text = DataList.teamList[0].team
             tvTeam2.text = DataList.teamList[1].team
             tvTeam1.setOnClickListener {
-                findNavController().navigate(SelectTeamFragmentDirections.actionSelectTeamFragmentToTeamDialogFragment(
-                    tvTeam1.text.toString(), 0
-                ))
+                findNavController().navigate(
+                    SelectTeamFragmentDirections.actionSelectTeamFragmentToTeamDialogFragment(
+                        tvTeam1.text.toString(), 0
+                    )
+                )
             }
 
             tvTeam2.setOnClickListener {
-                findNavController().navigate(SelectTeamFragmentDirections.actionSelectTeamFragmentToTeamDialogFragment(
-                    tvTeam2.text.toString(), 1
-                ))
+                findNavController().navigate(
+                    SelectTeamFragmentDirections.actionSelectTeamFragmentToTeamDialogFragment(
+                        tvTeam2.text.toString(), 1
+                    )
+                )
             }
 
             btnStart.setOnClickListener {
                 DataList.listSingeer.shuffle()
                 DataList.tempList.clear()
-                when(binding.rdGrupSetings.checkedRadioButtonId) {
+                when (binding.rdGrupSetings.checkedRadioButtonId) {
                     R.id.rdBtn60Sec -> Values.timer = 45
                     R.id.rdBtn90sec -> Values.timer = 60
                     R.id.rdBtn120sec -> Values.timer = 75
                 }
-                findNavController().navigate(R.id.action_selectTeamFragment_to_deAsaStoageFragment)
+                openFragment(R.id.action_selectTeamFragment_to_deAsaStoageFragment)
             }
 
         }
 
         binding.tvTeams.setOnClickListener {
-            findNavController().navigate(R.id.action_selectTeamFragment_to_teamDialogFragment)
+            openFragment(R.id.action_selectTeamFragment_to_teamDialogFragment)
         }
-
-
-
     }
-
-
 }

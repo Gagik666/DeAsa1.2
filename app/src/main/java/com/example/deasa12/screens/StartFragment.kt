@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.navigation.fragment.findNavController
+import com.example.deasa12.Extensions.dialog
+import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.R
 import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.database.database.SingerInfo
@@ -50,22 +52,22 @@ class StartFragment : Fragment() {
 
             nvMenu.setNavigationItemSelectedListener {
                 when (it.itemId) {
-                    R.id.itemSetings -> findNavController().navigate(R.id.action_startFragment_to_setingsFragment)
+                    R.id.itemSetings -> openFragment(R.id.action_startFragment_to_setingsFragment)
                     R.id.itemRating -> {
                         if (mAuth.currentUser != null) {
-                            findNavController().navigate(R.id.action_startFragment_to_ratingFragment)
+                            openFragment(R.id.action_startFragment_to_ratingFragment)
                         } else {
-                            erorDialog("You are not registered")
+                            dialog("You are not registered")
                         }
                     }
                     R.id.itemUsers -> {
                         if (mAuth.currentUser != null) {
-                            findNavController().navigate(R.id.action_startFragment_to_usersFragment)
+                            openFragment(R.id.action_startFragment_to_usersFragment)
                         } else {
-                            erorDialog("You are not registered")
+                            dialog("You are not registered")
                         }
                     }
-                    R.id.itemHelp -> findNavController().navigate(R.id.action_startFragment_to_helpFragment)
+                    R.id.itemHelp -> openFragment(R.id.action_startFragment_to_helpFragment)
                 }
 
                 true
@@ -85,13 +87,11 @@ class StartFragment : Fragment() {
                     Picasso.get().load(dataLastImgUrl).into(img)
                     name.text = "$dataFirstName $dataLastName"
                 }
-        } else {
-            name.text = "There is no user"
-        }
+        }  
 
         FirebaseUtils().fireStoreDatabase.collection("Help").document("help").get()
-            .addOnSuccessListener { Task->
-                for (i in 1 ..Task.data?.size!!) {
+            .addOnSuccessListener { Task ->
+                for (i in 1..Task.data?.size!!) {
                     DataList.helpList.add(Task.data?.get("$i").toString())
                 }
 
@@ -103,7 +103,7 @@ class StartFragment : Fragment() {
                     DataList.listSingeer.add(it.name)
                 }
             }
-            findNavController().navigate(R.id.action_startFragment_to_selectTeamFragment)
+            openFragment(R.id.action_startFragment_to_selectTeamFragment)
         }
 
         FirebaseUtils().fireStoreDatabase.collection("Singers")
@@ -118,22 +118,11 @@ class StartFragment : Fragment() {
                             )
                         }
                     }
-
-//                        db.userDao().getAll().forEach {
-//                            DataList.listSingeer.add(it.name)
-//                        }
                 }
-
 
             }
     }
 
-    fun erorDialog(title: String) {
-        val bulder = AlertDialog.Builder(context)
-        bulder.setTitle(title)
-        bulder.setPositiveButton("Ok") { dialog, i -> }
-        bulder.show()
-    }
 
 }
 

@@ -1,15 +1,16 @@
 package com.example.deasa12.screens
 
 
-import android.app.AlertDialog
+
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import com.example.deasa12.Extensions.checkForInternet
+import com.example.deasa12.Extensions.dialog
+import com.example.deasa12.Extensions.isValidEmail
+import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentLogInBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -25,7 +26,6 @@ class LogInFragment : Fragment() {
         binding = FragmentLogInBinding.inflate(inflater)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
@@ -46,35 +46,22 @@ class LogInFragment : Fragment() {
                 ).addOnCompleteListener { Task ->
                     if (Task.isSuccessful) {
                         binding.progressBar.visibility = View.GONE
-                        findNavController().navigate(R.id.action_logInFragment_to_startFragment)
+                        openFragment(R.id.action_logInFragment_to_startFragment)
                     } else {
                         binding.progressBar.visibility = View.GONE
-                        if (context?.let { it1 -> !Funs.checkForInternet(it1) } == true) {
-                            erorDialog("There is not conection internet")
+                        if (context?.let { it1 -> !checkForInternet(it1) } == true) {
+                            dialog("There is not conection internet")
                         } else if (!Task.isSuccessful) {
-                            erorDialog("There is not user")
+                            dialog("There is not user")
+
                         }
                     }
                 }
             }
-
         }
-
         binding.tvRegistration.setOnClickListener {
-            findNavController().navigate(R.id.action_logInFragment_to_registrationFragment)
+            openFragment(R.id.action_logInFragment_to_registrationFragment)
 
         }
     }
-
-    private fun isValidEmail(email: String): Boolean {
-        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    fun erorDialog(title: String) {
-        val bulder = AlertDialog.Builder(context)
-        bulder.setTitle(title)
-        bulder.setPositiveButton("Ok") { dialog, i -> }
-        bulder.show()
-    }
-
 }

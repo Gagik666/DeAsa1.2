@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.R
 import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.database.database.SingerInfo
@@ -111,7 +112,7 @@ class RatingFragment : Fragment() {
                         .document(mAuth.currentUser!!.uid).set(hashMap).addOnSuccessListener {
                             progressBar.visibility = View.VISIBLE
                             Toast.makeText(context, "add data fireStore", Toast.LENGTH_SHORT).show()
-                            findNavController().navigate(R.id.action_ratingFragment_to_startFragment)
+                            openFragment(R.id.action_ratingFragment_to_startFragment)
                         }
                 }
             }

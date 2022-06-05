@@ -26,12 +26,6 @@ class HelpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mediaControlerHelp = MediaController(context)
 
-//        binding.tvAbout.append("Կարող եք ․․․\n")
-//        binding.tvAbout.append(" .Գրանցվել պրոյեկտում\n")
-//        binding.tvAbout.append(" .գանհատել պրոյեկտը\n")
-//        binding.tvAbout.append(" .տեսնել ուրիշների գնահատականները\n")
-//        binding.tvAbout.append(" .եթե գրանցվել եք հնարավորություն ունեք պահպանել խաղի արդյունքները նախորդի հետ համեմատելու համար\n")
-
         DataList.helpList.forEach {
             binding.tvAbout.append("$it \n")
         }

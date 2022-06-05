@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.deasa12.Extensions.dialog
+import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentSetingsBinding
 import com.example.deasa12.utils.FirebaseUtils
@@ -59,26 +61,26 @@ class SetingsFragment : Fragment() {
 
 
         binding.btnSave.setOnClickListener {
+            binding.btnSave.visibility = View.INVISIBLE
             getPhotoUrl()
-//            getrVideUri()
         }
 
 
         binding.flowLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            findNavController().navigate(R.id.action_setingsFragment_to_startFragment)
+            openFragment(R.id.action_setingsFragment_to_startFragment)
         }
 
         binding.flowLogIn.setOnClickListener {
-            findNavController().navigate(R.id.action_setingsFragment_to_logInFragment)
+            openFragment(R.id.action_setingsFragment_to_logInFragment)
         }
 
         binding.imgAddphoto.setOnClickListener {
             if (mAuth.currentUser != null) {
+                binding.btnSave.visibility = View.VISIBLE
                 getImage()
-//                getVideo()
             } else {
-                erorDialog("You are not registered")
+                dialog("You are not registered")
             }
         }
 
@@ -124,12 +126,6 @@ class SetingsFragment : Fragment() {
         startActivityForResult(intentChuser, 1)
     }
 
-    fun erorDialog(title: String) {
-        val bulder = AlertDialog.Builder(context)
-        bulder.setTitle(title)
-        bulder.setPositiveButton("Ok") { dialog, i -> }
-        bulder.show()
-    }
 
     fun getPhotoUrl() {
         binding.progressBar.visibility = View.VISIBLE
@@ -155,19 +151,17 @@ class SetingsFragment : Fragment() {
 
     }
 
-
-
     fun clickMore() {
         if (!isClick) {
             isClick = true
             binding.imgMore.setImageResource(R.drawable.ic_more_close)
-            binding.tvSetingsEmail.visibility = View.VISIBLE
-            binding.tvSetingsPassword.visibility = View.VISIBLE
+            binding.layoutAcaunt.visibility = View.VISIBLE
+
         } else {
             isClick = false
             binding.imgMore.setImageResource(R.drawable.ic_more)
-            binding.tvSetingsEmail.visibility = View.INVISIBLE
-            binding.tvSetingsPassword.visibility = View.INVISIBLE
+            binding.layoutAcaunt.visibility = View.INVISIBLE
+
         }
     }
 }
