@@ -81,7 +81,7 @@ class PointFragment : Fragment() {
         }
         binding.btnPlay.setOnClickListener {
             DataList.queueList[0].queue += 1
-            DataList.listSingeer.shuffle()
+//            DataList.listSingeer.shuffle()
            openFragment(R.id.action_pointFragment_to_deAsaStoageFragment)
         }
 
