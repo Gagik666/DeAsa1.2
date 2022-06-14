@@ -5,6 +5,7 @@ object Values {
     var timer = 60
     var start = -4
     var end = 0
+    var step = 0
     var p = 0
     var lisIsEmpty = false
 }

@@ -72,7 +72,7 @@ class DeAsaStoageFragment : Fragment() {
         x = DataList.tempList.size
         singerAdapter = SingerAdapter(DataList.tempList) {
             Values.p++
-            if (DataList.listSingeer.size - Values.end <= 6 ) {
+            if (DataList.listSingeer.size - Values.step <= 6 ) {
                 openFragment(R.id.action_deAsaStoageFragment_to_pointFragment)
                 Values.lisIsEmpty = true
 
@@ -99,10 +99,10 @@ class DeAsaStoageFragment : Fragment() {
     fun getSingerTempList() {
         Values.start += 5
         Values.end += 5
-        Toast.makeText(context, Values.start.toString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, Values.step.toString(), Toast.LENGTH_SHORT).show()
         for (i in Values.start..Values.end) {
             DataList.tempList.add(DataList.listSingeer[i])
-
+            Values.step = i
         }
 
     }

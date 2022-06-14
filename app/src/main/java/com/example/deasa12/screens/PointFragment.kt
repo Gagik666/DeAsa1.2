@@ -139,6 +139,7 @@ class PointFragment : Fragment() {
             Values.p = 0
             Values.start = -4
             Values.end = 0
+            Values.step = 0
             DataList.listSingeer.clear()
         }
 
