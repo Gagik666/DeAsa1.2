@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat.recreate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -71,7 +72,7 @@ class DeAsaStoageFragment : Fragment() {
         x = DataList.tempList.size
         singerAdapter = SingerAdapter(DataList.tempList) {
             Values.p++
-            if (Values.p == DataList.listSingeer.size - 6) {
+            if (DataList.listSingeer.size - Values.end <= 6 ) {
                 openFragment(R.id.action_deAsaStoageFragment_to_pointFragment)
                 Values.lisIsEmpty = true
 
@@ -93,13 +94,12 @@ class DeAsaStoageFragment : Fragment() {
             }
         }
         binding.rvSinger.adapter = singerAdapter
-
     }
 
-
     fun getSingerTempList() {
-        Values.start += 6
-        Values.end += 6
+        Values.start += 5
+        Values.end += 5
+        Toast.makeText(context, Values.start.toString(), Toast.LENGTH_SHORT).show()
         for (i in Values.start..Values.end) {
             DataList.tempList.add(DataList.listSingeer[i])
 

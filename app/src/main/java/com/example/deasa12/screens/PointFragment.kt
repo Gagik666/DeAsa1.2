@@ -137,7 +137,7 @@ class PointFragment : Fragment() {
             DataList.queueList[0].queue = 1
             DataList.tempList.clear()
             Values.p = 0
-            Values.start = -5
+            Values.start = -4
             Values.end = 0
             DataList.listSingeer.clear()
         }

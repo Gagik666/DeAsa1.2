@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.GravityCompat
-import androidx.navigation.fragment.findNavController
 import com.example.deasa12.Extensions.dialog
 import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.R

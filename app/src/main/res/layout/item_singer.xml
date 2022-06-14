@@ -24,7 +24,7 @@
             android:elevation="10dp"
             android:text="Ինգա Անուշ արշակյաններ"
             android:textColor="#000"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:cornerRadius="16dp"
             android:textAllCaps="false"
