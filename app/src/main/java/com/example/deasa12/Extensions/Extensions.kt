@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 
 fun Fragment.openFragment(fragmentId: Int) {
     findNavController().navigate(fragmentId)
@@ -36,4 +37,8 @@ fun Fragment.checkForInternet(context: Context): Boolean {
 
 fun Fragment.isValidEmail(email: String): Boolean {
     return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+}
+
+fun Fragment.isRegistred(): Boolean {
+    return FirebaseAuth.getInstance().currentUser != null
 }

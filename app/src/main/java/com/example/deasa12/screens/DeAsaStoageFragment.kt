@@ -58,13 +58,13 @@ class DeAsaStoageFragment : Fragment() {
             binding.tvTeam.text = DataList.teamList[0].team
             deAsaViewModel.liveDataPoint0.observe(viewLifecycleOwner, Observer {
                 binding.tvTeam.text = DataList.teamList[0].team
-                binding.tvPoint.text = "Point $it "
+                binding.tvPoint.text = "Point $it  "
             })
         } else {
             binding.tvTeam.text = DataList.teamList[1].team
             deAsaViewModel.liveDataPoint1.observe(viewLifecycleOwner, Observer {
                 binding.tvTeam.text = DataList.teamList[1].team
-                binding.tvPoint.text = "Point $it "
+                binding.tvPoint.text = "Point $it  "
             })
         }
 
@@ -80,11 +80,11 @@ class DeAsaStoageFragment : Fragment() {
             if (it) point++ else point--
             if (queue == 1 || queue == 3) {
                 binding.tvTeam.text = DataList.teamList[0].team
-                binding.tvPoint.text = "Point ${DataList.teamList[0].point + 1} "
+                binding.tvPoint.text = "Point ${DataList.teamList[0].point + 1}  "
                 deAsaViewModel.updatePoint0(it)
             } else {
                 binding.tvTeam.text = DataList.teamList[1].team
-                binding.tvPoint.text = "Point ${DataList.teamList[1].point + 1} "
+                binding.tvPoint.text = "Point ${DataList.teamList[1].point + 1}  "
                 deAsaViewModel.updatePoint1(it)
             }
             if (point == x) {

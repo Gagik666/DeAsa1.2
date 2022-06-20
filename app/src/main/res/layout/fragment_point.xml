@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/baxgraund_fon"
     android:padding="16dp"
     tools:context=".screens.PointFragment">
 
@@ -55,7 +54,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:backgroundTint="#2bbd7e"
         android:paddingHorizontal="32dp"
         android:text="save data"
         app:cornerRadius="24dp"
@@ -142,7 +140,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Play"
-        android:backgroundTint="#2bbd7e"
         android:textSize="28sp"
         android:textStyle="bold"
         android:layout_marginHorizontal="16dp"
@@ -156,7 +153,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="play again"
-        android:backgroundTint="#2bbd7e"
         android:textSize="28sp"
         android:textStyle="bold"
         android:layout_marginHorizontal="16dp"

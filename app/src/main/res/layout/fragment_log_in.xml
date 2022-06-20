@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/baxgraund_fon"
+    android:background="@color/white"
     android:padding="35dp"
     tools:context=".screens.LogInFragment">
 
@@ -32,37 +32,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sign In"
-                android:textColor="@color/white"
+                android:textColor="#006c60"
                 android:textSize="45sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/edEmail"
+            <com.google.android.material.textfield.TextInputLayout
+                style="Theme.MaterialDesign" parent="Theme.MaterialComponents.NoActionBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:backgroundTint="#2bbd7e"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:padding="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_margin="10dp"
+                android:hint="email"
+                app:endIconMode="none">
 
-            <EditText
-                android:id="@+id/edPassword"
+                <EditText
+                    android:id="@+id/edEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:inputType="textEmailAddress"
+                    android:padding="12dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#AFADAD"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="Theme.MaterialDesign" parent="Theme.MaterialComponents.NoActionBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="#2bbd7e"
+                android:layout_margin="10dp"
                 android:hint="@string/password"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                app:endIconMode="password_toggle">
+
+                <EditText
+                    android:id="@+id/edPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#AFADAD"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
 
@@ -71,11 +85,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:backgroundTint="#2bbd7e"
                 android:text="@string/log_in"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                app:cornerRadius="24dp" />
+                app:cornerRadius="24dp"
+                android:textAllCaps="false"/>
 
             <TextView
                 android:id="@+id/tvRegistration"

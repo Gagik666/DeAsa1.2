@@ -59,7 +59,6 @@ class SetingsFragment : Fragment() {
         }
 
 
-
         binding.btnSave.setOnClickListener {
             binding.btnSave.visibility = View.INVISIBLE
             getPhotoUrl()
@@ -69,6 +68,10 @@ class SetingsFragment : Fragment() {
         binding.flowLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             openFragment(R.id.action_setingsFragment_to_startFragment)
+        }
+
+        binding.tvSetingsPassword.setOnClickListener {
+            openFragment(R.id.action_setingsFragment_to_cangeDialogFragment)
         }
 
         binding.flowLogIn.setOnClickListener {

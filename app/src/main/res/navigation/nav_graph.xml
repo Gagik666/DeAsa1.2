@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_setingsFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_setingsFragment_to_cangeDialogFragment"
+            app:destination="@id/cangeDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/logInFragment"
@@ -136,5 +139,10 @@
         android:name="com.example.deasa12.screens.HelpFragment"
         android:label="fragment_help"
         tools:layout="@layout/fragment_help" />
+    <dialog
+        android:id="@+id/cangeDialogFragment"
+        android:name="com.example.deasa12.screens.dialogScreens.CangeDialogFragment"
+        android:label="fragment_cange_dialog"
+        tools:layout="@layout/fragment_cange_dialog" />
 
 </navigation>

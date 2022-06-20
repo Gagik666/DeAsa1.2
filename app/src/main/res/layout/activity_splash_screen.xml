@@ -14,7 +14,7 @@
         android:text="DeAsa"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#2bbd7e"
+        android:textColor="#00786b"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
