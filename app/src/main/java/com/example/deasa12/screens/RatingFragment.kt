@@ -6,16 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.R
-import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.database.database.SingerInfo
 import com.example.deasa12.databinding.FragmentRatingBinding
 import com.example.deasa12.utils.FirebaseUtils
-import com.example.studentapp.database.UserDatabase
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.*
 
 
 class RatingFragment : Fragment() {
@@ -99,22 +95,43 @@ class RatingFragment : Fragment() {
             btnSave.setOnClickListener {
 
                 progressBar.visibility = View.VISIBLE
-                val hashMap = hashMapOf<String, Any>(
-                    "firstName" to dataFirstName,
-                    "lastName" to dataLastName,
-                    "imgageId" to imgId,
-                    "rating" to rating
+                if (Value.googlePref?.getBoolean("isGoogle", false) == true) {
+                    val hashMap = hashMapOf<String, Any>(
+                        "firstName" to FirebaseAuth.getInstance().currentUser?.displayName.toString(),
+                        "lastName" to "",
+                        "imgageId" to FirebaseAuth.getInstance().currentUser?.photoUrl.toString(),
+                        "rating" to rating
 
-                )
+                    )
+                    if (mAuth.currentUser != null) {
+                        FirebaseUtils().fireStoreDatabase.collection("Rating")
+                            .document(mAuth.currentUser!!.uid).set(hashMap).addOnSuccessListener {
+                                progressBar.visibility = View.VISIBLE
+                                Toast.makeText(context, "add data fireStore", Toast.LENGTH_SHORT).show()
+                                openFragment(R.id.action_ratingFragment_to_startFragment)
+                            }
+                    }
 
-                if (mAuth.currentUser != null) {
-                    FirebaseUtils().fireStoreDatabase.collection("Rating")
-                        .document(mAuth.currentUser!!.uid).set(hashMap).addOnSuccessListener {
-                            progressBar.visibility = View.VISIBLE
-                            Toast.makeText(context, "add data fireStore", Toast.LENGTH_SHORT).show()
-                            openFragment(R.id.action_ratingFragment_to_startFragment)
-                        }
+                } else {
+                    val hashMap = hashMapOf<String, Any>(
+                        "firstName" to dataFirstName,
+                        "lastName" to dataLastName,
+                        "imgageId" to imgId,
+                        "rating" to rating
+
+                    )
+                    if (mAuth.currentUser != null) {
+                        FirebaseUtils().fireStoreDatabase.collection("Rating")
+                            .document(mAuth.currentUser!!.uid).set(hashMap).addOnSuccessListener {
+                                progressBar.visibility = View.VISIBLE
+                                Toast.makeText(context, "add data fireStore", Toast.LENGTH_SHORT).show()
+                                openFragment(R.id.action_ratingFragment_to_startFragment)
+                            }
+                    }
                 }
+
+
+
             }
 
 

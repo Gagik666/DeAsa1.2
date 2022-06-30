@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-
+    android:background="@color/secondry_magenta_light"
     tools:context=".screens.SetingsFragment">
 
     <LinearLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00786b"
+        android:background="#6a1b9a"
         android:orientation="horizontal"
         android:padding="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,8 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
-            android:text="FirstName LastName"
-            android:textColor="#FFF"
+            android:text="@string/firstname_lastname"
+            android:textColor="@color/secondry_magenta_light"
             android:textSize="16sp" />
 
 
@@ -68,17 +67,54 @@
         app:layout_constraintEnd_toEndOf="@id/layoutHeader" />
 
 
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flowSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        app:constraint_referenced_ids="imgSound,tvSwitch, switchSound"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
+    <ImageView
+        android:id="@+id/imgSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_sound"
+        app:layout_constraintStart_toStartOf="@id/flowSwitch"
+        app:layout_constraintTop_toTopOf="@id/flowSwitch" />
+
     <TextView
-        android:id="@+id/tvSetings"
+        android:id="@+id/tvSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="SETINGS"
-        android:textColor="#91E3BF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+        android:text="Game sounds:"
+        android:textColor="#2E3A2D"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/imgSound"
+        app:layout_constraintTop_toTopOf="@id/flowSwitch" />
+
+    <Switch
+        android:id="@+id/switchSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/flowSwitch"
+        app:layout_constraintTop_toTopOf="@id/flowSwitch"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#CDCDCD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/layoutHeader"
+        app:layout_constraintTop_toBottomOf="@id/switchSound" />
 
 
     <androidx.constraintlayout.helper.widget.Flow
@@ -93,7 +129,7 @@
         android:visibility="invisible"
         app:constraint_referenced_ids="imgLogIn,tvLogIn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSetings" />
+        app:layout_constraintTop_toBottomOf="@id/switchSound" />
 
     <ImageView
         android:id="@+id/imgLogIn"
@@ -127,7 +163,7 @@
         android:visibility="visible"
         app:constraint_referenced_ids="imgLogOut,tvlogOut"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSetings" />
+        app:layout_constraintTop_toBottomOf="@id/switchSound" />
 
     <ImageView
         android:id="@+id/imgLogOut"
@@ -163,7 +199,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingStart="16dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/flowLogOut">
 
@@ -173,7 +209,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Email"
+            android:text="@string/emailtv"
             android:textColor="#2E3A2D"
             android:textSize="18sp" />
 
@@ -181,7 +217,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Email address"
+            android:text="@string/email_address"
             android:textColor="#939393"
             android:textSize="12sp" />
 
@@ -196,15 +232,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Password"
+            android:text="@string/passwordbtn"
             android:textColor="#2E3A2D"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Password"
+            android:text="@string/click_to_change_the_password"
             android:textColor="#939393"
             android:textSize="12sp" />
 
@@ -221,12 +257,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
-        android:backgroundTint="#2bbd7e"
         android:text="save"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:cornerRadius="50dp"
         android:visibility="invisible"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -240,4 +275,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

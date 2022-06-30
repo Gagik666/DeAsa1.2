@@ -1,15 +1,11 @@
 package com.example.deasa12.screens
 
-import android.app.Activity
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 
-import androidx.navigation.fragment.findNavController
 import com.example.deasa12.Extensions.checkForInternet
 import com.example.deasa12.Extensions.dialog
 import com.example.deasa12.Extensions.openFragment
@@ -26,7 +22,6 @@ class PointFragment : Fragment() {
     lateinit var team1point: String
     lateinit var team2name: String
     lateinit var team2point: String
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -81,8 +76,8 @@ class PointFragment : Fragment() {
         }
         binding.btnPlay.setOnClickListener {
             DataList.queueList[0].queue += 1
-//            DataList.listSingeer.shuffle()
-           openFragment(R.id.action_pointFragment_to_deAsaStoageFragment)
+            Value.point = 0
+                openFragment(R.id.action_pointFragment_to_deAsaStoageFragment)
         }
 
         binding.tvTeam1Point.text = DataList.teamList[0].point.toString()
@@ -136,14 +131,17 @@ class PointFragment : Fragment() {
             DataList.teamList[1].team = "Team 2"
             DataList.queueList[0].queue = 1
             DataList.tempList.clear()
-            Values.p = 0
-            Values.start = -4
-            Values.end = 0
-            Values.step = 0
+            DataList.tempSongList.clear()
+            Value.p = 0
+            Value.p = 0
+            Value.start = -4
+            Value.end = 0
+            Value.step = 0
+            Value.point = 0
             DataList.listSingeer.clear()
         }
 
-        if (Values.lisIsEmpty) {
+        if (Value.lisIsEmpty) {
             dialog("Sorry, the singers' names have expired")
             binding.btnAgain.visibility = View.VISIBLE
             binding.btnPlay.visibility = View.INVISIBLE

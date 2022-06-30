@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_startFragment_to_helpFragment"
             app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
 
     </fragment>
     <fragment

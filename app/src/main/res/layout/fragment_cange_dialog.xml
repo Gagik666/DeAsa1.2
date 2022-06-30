@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/secondry_magenta_light"
     android:padding="16dp"
     tools:context=".screens.dialogScreens.CangeDialogFragment">
 
@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Change password"
-        android:textColor="@color/black"
+        android:textColor="@color/magenta_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,13 +22,14 @@
         android:id="@+id/edOldPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="104dp"
         android:background="@drawable/style_edit_text"
         android:hint="Old Password"
-        android:padding="8dp"
+        android:padding="12dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvChangePassword" />
 
@@ -39,7 +40,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/style_edit_text"
         android:hint="Password"
-        android:padding="8dp"
+        android:padding="12dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +54,9 @@
         android:layout_marginTop="16dp"
         app:cornerRadius="16dp"
         android:text="Cancle"
+        android:textColor="@color/secondry_magenta_light"
         android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edNewPasswod" />
 
@@ -65,7 +68,9 @@
         android:layout_marginStart="16dp"
         app:cornerRadius="16dp"
         android:text="Change"
+        android:textColor="@color/secondry_magenta_light"
         android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnCancel"
         app:layout_constraintTop_toBottomOf="@id/edNewPasswod" />

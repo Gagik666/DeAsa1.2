@@ -13,7 +13,6 @@ class SingerAdapter(
     private val singerList: MutableList<String>,
     private val onClickItem: (click: Boolean) -> Unit
 ): RecyclerView.Adapter<SingerAdapter.SingerViewHolder>() {
-
     inner class SingerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding = ItemSingerBinding.bind(itemView)
         @SuppressLint("ResourceAsColor")
@@ -22,7 +21,7 @@ class SingerAdapter(
             var click = false
             btnSinger.setOnClickListener {
                 if (!click) {
-                    binding.btnSinger.setTextColor(R.color.gray)
+                    binding.btnSinger.setTextColor(R.color.magenta_dark)
                     click = true
                 } else {
                     binding.btnSinger.setTextColor(R.color.black)

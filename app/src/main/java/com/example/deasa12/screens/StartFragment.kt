@@ -1,6 +1,5 @@
 package com.example.deasa12.screens
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.GravityCompat
 import com.example.deasa12.Extensions.dialog
+import com.example.deasa12.Extensions.isRegistred
 import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.R
 import com.example.deasa12.`object`.dataList.DataList
@@ -41,6 +41,12 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (isRegistred()) {
+            if (!FirebaseAuth.getInstance().currentUser?.isEmailVerified!!) {
+                openFragment(R.id.action_startFragment_to_logInFragment)
+            }
+        }
+
         val db = UserDatabase.getDatabase(context?.applicationContext!!)
         mAuth = FirebaseAuth.getInstance()
         binding.apply {
@@ -53,14 +59,14 @@ class StartFragment : Fragment() {
                 when (it.itemId) {
                     R.id.itemSetings -> openFragment(R.id.action_startFragment_to_setingsFragment)
                     R.id.itemRating -> {
-                        if (mAuth.currentUser != null) {
+                        if (isRegistred()) {
                             openFragment(R.id.action_startFragment_to_ratingFragment)
                         } else {
                             dialog("You are not registered")
                         }
                     }
                     R.id.itemUsers -> {
-                        if (mAuth.currentUser != null) {
+                        if (isRegistred()) {
                             openFragment(R.id.action_startFragment_to_usersFragment)
                         } else {
                             dialog("You are not registered")
@@ -68,7 +74,6 @@ class StartFragment : Fragment() {
                     }
                     R.id.itemHelp -> openFragment(R.id.action_startFragment_to_helpFragment)
                 }
-
                 true
             }
         }
@@ -76,17 +81,25 @@ class StartFragment : Fragment() {
         val navMenuHeader = binding.nvMenu.getHeaderView(0)
         val name = navMenuHeader.findViewById<TextView>(R.id.tvUser)
         val img = navMenuHeader.findViewById<ImageView>(R.id.imgProfilHeader)
-        if (mAuth.currentUser != null) {
+
+
+        if (isRegistred()) {
             FirebaseUtils().fireStoreDatabase.collection("users")
                 .document(mAuth.currentUser!!.uid).get()
                 .addOnSuccessListener { querySnapshot ->
                     dataFirstName = querySnapshot.data?.get("firstName").toString()
                     dataLastName = querySnapshot.data?.get("lastName").toString()
                     dataLastImgUrl = querySnapshot.data?.get("imgageId").toString()
-                    Picasso.get().load(dataLastImgUrl).into(img)
-                    name.text = "$dataFirstName $dataLastName"
+
+                    if (Value.googlePref?.getBoolean("isGoogle", false) == true) {
+                        name.text = mAuth.currentUser?.displayName.toString()
+                        Picasso.get().load(mAuth.currentUser?.photoUrl).into(img)
+                    } else {
+                        name.text = "$dataFirstName $dataLastName"
+                        Picasso.get().load(dataLastImgUrl).into(img)
+                    }
                 }
-        }  
+        }
 
         FirebaseUtils().fireStoreDatabase.collection("Help").document("help").get()
             .addOnSuccessListener { Task ->

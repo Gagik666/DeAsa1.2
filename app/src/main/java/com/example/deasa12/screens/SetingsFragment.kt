@@ -1,20 +1,22 @@
 package com.example.deasa12.screens
 
+import Value
 import android.app.Activity.RESULT_OK
-import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import com.example.deasa12.Extensions.dialog
+import com.example.deasa12.Extensions.isGoogle
 import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentSetingsBinding
 import com.example.deasa12.utils.FirebaseUtils
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
@@ -39,7 +41,7 @@ class SetingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
-
+        binding.switchSound.isChecked = Value.sound
         binding.imgMore.setOnClickListener {
             clickMore()
         }
@@ -67,6 +69,17 @@ class SetingsFragment : Fragment() {
 
         binding.flowLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
+
+            GoogleSignIn.getClient(
+                requireContext(),
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+            ).signOut()
+
+
+
+            if (Value.googlePref?.getBoolean("isGoogle", false) == true) {
+                isGoogle(false)
+            }
             openFragment(R.id.action_setingsFragment_to_startFragment)
         }
 
@@ -87,6 +100,19 @@ class SetingsFragment : Fragment() {
             }
         }
 
+        binding.switchSound.setOnCheckedChangeListener { compoundButton, onSwitch ->
+            if (onSwitch) {
+                Value.sound = true
+                binding.switchSound.isChecked = true
+            }else {
+                Value.sound = false
+                binding.switchSound.isChecked = false
+            }
+
+
+
+        }
+
         if (mAuth.currentUser != null) {
             FirebaseUtils().fireStoreDatabase.collection("users")
                 .document(mAuth.currentUser!!.uid).get()
@@ -94,10 +120,22 @@ class SetingsFragment : Fragment() {
                     dataFirstName = querySnapshot.data?.get("firstName").toString()
                     dataLastName = querySnapshot.data?.get("lastName").toString()
                     imgId = querySnapshot.data?.get("imgageId").toString()
-                    binding.tvSetingsEmail.text = querySnapshot.data?.get("email").toString()
-                    binding.tvSetingsPassword.text = querySnapshot.data?.get("password").toString()
-                    binding.tvUserName.text = "$dataFirstName $dataLastName"
-                    Picasso.get().load(imgId).into(binding.imgProfil)
+                    if (Value.googlePref?.getBoolean("isGoogle", false) == true) {
+                        binding.imgMore.visibility = View.INVISIBLE
+                    } else {
+                        binding.tvSetingsEmail.text = querySnapshot.data?.get("email").toString()
+                        binding.tvSetingsPassword.text = querySnapshot.data?.get("password").toString()
+                    }
+
+
+                    if (Value.googlePref?.getBoolean("isGoogle", false) == true) {
+                        Picasso.get().load(mAuth.currentUser?.photoUrl).into(binding.imgProfil)
+                        binding.tvUserName.text = mAuth.currentUser?.displayName
+                    } else {
+                        Picasso.get().load(imgId).into(binding.imgProfil)
+                        binding.tvUserName.text = "$dataFirstName $dataLastName"
+                    }
+
                 }
         } else {
             binding.tvUserName.text = "There is no user"
@@ -151,7 +189,6 @@ class SetingsFragment : Fragment() {
                 }
             }
         }
-
     }
 
     fun clickMore() {

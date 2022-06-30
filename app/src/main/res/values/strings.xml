@@ -8,4 +8,10 @@
     <string name="registration">Registration</string>
     <string name="sign_up">Sign Up</string>
     <string name="log_out">Log Out</string>
+    <string name="click_to_change_the_password">Click to change the password</string>
+    <string name="passwordbtn">Password</string>
+    <string name="email_address">Email address</string>
+    <string name="emailtv">Email</string>
+    <string name="firstname_lastname">FirstName LastName</string>
+    <string name="setings">SETINGS</string>
 </resources>

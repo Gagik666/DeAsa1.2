@@ -17,12 +17,13 @@ class DeAsaViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         timer()
-
     }
 
 
+
+
     private fun timer() {
-        object : CountDownTimer(Values.timer.toLong() * 1000, 1000) {
+        object : CountDownTimer(Value.timer.toLong() * 1000, 1000) {
             override fun onTick(p0: Long) {
                 liveDataTimer.value = (p0 / 1000).toString()
             }
@@ -46,6 +47,8 @@ class DeAsaViewModel(application: Application) : AndroidViewModel(application) {
         liveDataPoint1.value = DataList.teamList[1].point
 
     }
+
+
 
 
 }

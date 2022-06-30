@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.DeAsa12" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/whatsap_green_loght</item>
-        <item name="colorPrimaryVariant">@color/whatsap_green_dark</item>
+        <item name="colorPrimary">@color/magenta_light</item>
+        <item name="colorPrimaryVariant">@color/magenta_dark</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,5 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 </resources>

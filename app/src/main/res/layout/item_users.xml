@@ -7,7 +7,7 @@
     app:cardCornerRadius="24dp"
     android:elevation="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-   android:background="@color/white">
+    android:background="@color/secondry_magenta_light">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

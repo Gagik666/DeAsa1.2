@@ -32,11 +32,17 @@ class TeamDialogFragment : DialogFragment() {
         binding.btnOk.setOnClickListener {
             findNavController().navigate(R.id.action_teamDialogFragment_to_selectTeamFragment)
             if (args.id == 0) {
-                DataList.teamList[0].team = binding.edName.text.toString()
+                if (binding.edName.text.isEmpty())
+                    DataList.teamList[0].team = "Team 1"
+                else
+                    DataList.teamList[0].team = binding.edName.text.toString()
             }
 
             if (args.id == 1) {
-                DataList.teamList[1].team = binding.edName.text.toString()
+                if (binding.edName.text.isEmpty())
+                    DataList.teamList[1].team = "Team 2"
+                else
+                    DataList.teamList[1].team = binding.edName.text.toString()
             }
             dismiss()
         }

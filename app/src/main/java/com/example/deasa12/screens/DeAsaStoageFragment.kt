@@ -1,17 +1,18 @@
 package com.example.deasa12.screens
 
 import android.app.Activity
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.app.ActivityCompat.recreate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.deasa12.Extensions.isFalesSong
+import com.example.deasa12.Extensions.isTrueSong
 import com.example.deasa12.Extensions.openFragment
 import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
@@ -26,6 +27,7 @@ class DeAsaStoageFragment : Fragment() {
     lateinit var singerAdapter: SingerAdapter
     lateinit var deAsaViewModel: DeAsaViewModel
     private lateinit var mAuth: FirebaseAuth
+
     var queue = 0
     var point = 0
     var x = 0
@@ -49,7 +51,7 @@ class DeAsaStoageFragment : Fragment() {
             if (it.toString().toInt() == 0) {
                 openFragment(R.id.action_deAsaStoageFragment_to_pointFragment)
                 DataList.tempList.clear()
-                Values.lisIsEmpty = false
+                Value.lisIsEmpty = false
             }
         })
         queue = DataList.queueList[0].queue
@@ -71,13 +73,18 @@ class DeAsaStoageFragment : Fragment() {
         binding.rvSinger.layoutManager = LinearLayoutManager(this.context)
         x = DataList.tempList.size
         singerAdapter = SingerAdapter(DataList.tempList) {
-            Values.p++
-            if (DataList.listSingeer.size - Values.step <= 6 ) {
+            Value.p++
+            if (DataList.listSingeer.size - Value.step <= 6) {
                 openFragment(R.id.action_deAsaStoageFragment_to_pointFragment)
-                Values.lisIsEmpty = true
-
+                Value.lisIsEmpty = true
             }
-            if (it) point++ else point--
+            if (it) {
+                isTrueSong()
+                point++
+            } else {
+                isFalesSong()
+                point--
+            }
             if (queue == 1 || queue == 3) {
                 binding.tvTeam.text = DataList.teamList[0].team
                 binding.tvPoint.text = "Point ${DataList.teamList[0].point + 1}  "
@@ -97,12 +104,11 @@ class DeAsaStoageFragment : Fragment() {
     }
 
     fun getSingerTempList() {
-        Values.start += 5
-        Values.end += 5
-        Toast.makeText(context, Values.step.toString(), Toast.LENGTH_SHORT).show()
-        for (i in Values.start..Values.end) {
+        Value.start += 5
+        Value.end += 5
+        for (i in Value.start..Value.end) {
             DataList.tempList.add(DataList.listSingeer[i])
-            Values.step = i
+            Value.step = i
         }
 
     }

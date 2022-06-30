@@ -13,6 +13,10 @@ import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentSelectTeamBinding
 import com.example.deasa12.screens.dialogScreens.TeamDialogFragmentArgs
+import com.example.studentapp.database.UserDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SelectTeamFragment : Fragment() {
     lateinit var binding: FragmentSelectTeamBinding
@@ -47,22 +51,30 @@ class SelectTeamFragment : Fragment() {
                     )
                 )
             }
+            val db = UserDatabase.getDatabase(context?.applicationContext!!)
 
-            btnStart.setOnClickListener {
+            binding.tvTeams.setOnClickListener {
+                CoroutineScope(Dispatchers.IO).launch {
+                    db.userDao().deleteAll()
+                }
+                    Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show()
+
+
+            }
+
+            btnStartSinger.setOnClickListener {
                 DataList.listSingeer.shuffle()
                 DataList.tempList.clear()
                 when (binding.rdGrupSetings.checkedRadioButtonId) {
-                    R.id.rdBtn60Sec -> Values.timer = 45
-                    R.id.rdBtn90sec -> Values.timer = 60
-                    R.id.rdBtn120sec -> Values.timer = 75
+                    R.id.rdBtn60Sec -> Value.timer = 10
+                    R.id.rdBtn90sec -> Value.timer = 60
+                    R.id.rdBtn120sec -> Value.timer = 75
                 }
+                DataList.queueList[0].stage = 0
                 openFragment(R.id.action_selectTeamFragment_to_deAsaStoageFragment)
             }
 
         }
 
-        binding.tvTeams.setOnClickListener {
-            openFragment(R.id.action_selectTeamFragment_to_teamDialogFragment)
-        }
     }
 }

@@ -1,18 +1,12 @@
 package com.example.deasa12.screens
 
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import androidx.navigation.fragment.findNavController
-import com.example.deasa12.Extensions.checkForInternet
-import com.example.deasa12.Extensions.dialog
-import com.example.deasa12.Extensions.isValidEmail
-import com.example.deasa12.Extensions.openFragment
+import com.example.deasa12.Extensions.*
 import com.example.deasa12.R
 import com.example.deasa12.databinding.FragmentRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +25,9 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.tvSignUp.setOnClickListener {
+            isEmailSent()
+        }
         mAuth = FirebaseAuth.getInstance()
         val firebaseDatabase = FirebaseFirestore.getInstance()
         binding.btnRegistration.setOnClickListener {
@@ -51,20 +48,24 @@ class RegistrationFragment : Fragment() {
                     )
                         .addOnCompleteListener { Task ->
                             if (Task.isSuccessful) {
+                                isEmailSent()
                                 binding.progressBar.visibility = View.GONE
-                                openFragment(R.id.action_registrationFragment_to_startFragment)
+                                openFragment(R.id.action_registrationFragment_to_logInFragment)
                                 val firbaseUser = FirebaseAuth.getInstance().currentUser!!.uid
                                 val hashMap = hashMapOf<String, Any>(
                                     "firstName" to binding.edFirstName.text.toString(),
                                     "lastName" to binding.edLastName.text.toString(),
                                     "email" to binding.edEmail.text.toString(),
                                     "password" to binding.edPassword.text.toString(),
-                                    "imgageId" to Values.IMAGE_URL
+                                    "imgageId" to Value.IMAGE_URL
                                 )
                                 firebaseDatabase.collection("users").document(firbaseUser)
                                     .set(hashMap)
-                                    .addOnSuccessListener {}
+                                    .addOnSuccessListener {
+                                        emailVerifiDialog(getUrl("https://${binding.edEmail.text}"))
+                                    }
                             } else {
+                                dialog("There is such a user")
                                 binding.progressBar.visibility = View.GONE
                             }
                         }
@@ -78,6 +79,8 @@ class RegistrationFragment : Fragment() {
         binding.tvLogIn.setOnClickListener {
             openFragment(R.id.action_registrationFragment_to_logInFragment)
         }
+
+
     }
 
 

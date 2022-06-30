@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/secondry_magenta_light"
     android:padding="16dp"
     tools:context=".screens.SelectTeamFragment">
 
@@ -12,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Teams"
-        android:textColor="#2E3A2D"
+        android:textColor="#38006b"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,9 +26,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="24dp"
         android:text="Team 1"
+        android:padding="12dp"
         android:gravity="center"
         android:background="@drawable/style_edit_text"
-        android:textColor="#2E3A2D"
+        android:textColor="#38006b"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +42,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="24dp"
         android:text="Team 2"
-        android:textColor="#2E3A2D"
+        android:padding="12dp"
+        android:textColor="#38006b"
         android:background="@drawable/style_edit_text"
         android:gravity="center"
         android:textSize="28sp"
@@ -52,13 +55,13 @@
         android:id="@+id/flowInterval"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:clickable="true"
         android:focusable="true"
+        android:orientation="horizontal"
         app:constraint_referenced_ids="imgTimer,tvInterval"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imgTimer"
@@ -73,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Interval"
-        android:textColor="#2E3A2D"
+        android:textColor="#38006b"
         android:textSize="24sp"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@id/imgTimer"
@@ -92,7 +95,7 @@
 
         <RadioButton
             android:id="@+id/rdBtn60Sec"
-            android:text="45 sec"
+            android:text="10 sec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -112,16 +115,16 @@
     </RadioGroup>
 
 
-
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnStart"
+        android:id="@+id/btnStartSinger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Start"
-        android:textSize="32sp"
+        android:text="Guess the singer"
+        android:textAllCaps="false"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:cornerRadius="24dp"
+        android:backgroundTint="@color/magenta_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
