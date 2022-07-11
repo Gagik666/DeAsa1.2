@@ -24,20 +24,10 @@ class HelpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mediaControlerHelp = MediaController(context)
 
         DataList.helpList.forEach {
             binding.tvAbout.append("$it \n")
         }
 
-        binding.apply {
-            mediaControlerHelp.setAnchorView(vvHelp)
-            val onlineUrl =
-                Uri.parse("https://firebasestorage.googleapis.com/v0/b/deasa12-431ef.appspot.com/o/video%2FhelpVido.mp4?alt=media&token=2778c168-16eb-46ba-a1b6-d1c2d1e824d8")
-            vvHelp.setMediaController(mediaControlerHelp)
-            vvHelp.setVideoURI(onlineUrl)
-            vvHelp.requestFocus()
-            vvHelp.start()
-        }
     }
 }

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/secondry_magenta_light"
     android:padding="16dp"
     tools:context=".screens.PointFragment">
 
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Team 1"
         android:textSize="28sp"
-        android:textColor="#38006b"
+        android:textColor="@color/magenta_dark"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -24,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="28sp"
-        android:textColor="#38006b"
+        android:textColor="@color/magenta_dark"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -34,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="Team 2"
         android:textSize="28sp"
-        android:textColor="#38006b"
+        android:textColor="@color/magenta_dark"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/tvTeam1Name"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -45,7 +46,7 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="28sp"
-        android:textColor="#38006b"
+        android:textColor="@color/magenta_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTeam1Point"/>
 
@@ -79,7 +80,7 @@
         android:layout_height="wrap_content"
         android:text="Show olden result"
         android:textSize="16sp"
-        android:textColor="#38006b"
+        android:textColor="@color/magenta_dark"
         android:visibility="invisible"
         android:textStyle="bold"
         android:layout_marginTop="8dp"
@@ -93,7 +94,7 @@
         android:layout_height="wrap_content"
         android:text="Team 1"
         android:textSize="28sp"
-        android:textColor="#38006b"
+        android:textColor="@color/magenta_dark"
         android:layout_marginTop="24dp"
         android:textStyle="bold"
         android:visibility="invisible"
@@ -106,7 +107,7 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="28sp"
-        android:textColor="#38006b"
+        android:textColor="@color/magenta_dark"
         android:layout_marginTop="24dp"
         android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@id/tvShowhResult"
@@ -118,7 +119,7 @@
         android:layout_height="wrap_content"
         android:text="Team 2"
         android:textSize="28sp"
-        android:textColor="#38006b"
+        android:textColor="@color/magenta_dark"
         android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@id/tvTeam1NameOlden"
@@ -130,7 +131,7 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="28sp"
-        android:textColor="#38006b"
+        android:textColor="@color/magenta_dark"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTeam1PointOlden"/>

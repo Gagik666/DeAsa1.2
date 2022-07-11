@@ -21,10 +21,10 @@ class SingerAdapter(
             var click = false
             btnSinger.setOnClickListener {
                 if (!click) {
-                    binding.btnSinger.setTextColor(R.color.magenta_dark)
+                    binding.btnSinger.setTextColor(Color.parseColor("#CFB6DF"))
                     click = true
                 } else {
-                    binding.btnSinger.setTextColor(R.color.black)
+                    binding.btnSinger.setTextColor(Color.parseColor("#38006b"))
                     click = false
                 }
                 onClickItem.invoke(click)

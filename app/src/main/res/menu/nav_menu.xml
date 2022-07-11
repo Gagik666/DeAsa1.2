@@ -17,7 +17,7 @@
         android:icon="@drawable/ic_users"/>
 
     <item
-        android:title="Help"
+        android:title="About"
         android:id="@+id/itemHelp"
         android:icon="@drawable/ic_help"/>
 

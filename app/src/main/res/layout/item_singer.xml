@@ -10,7 +10,7 @@
             android:id="@+id/viewLeft"
             android:layout_width="30dp"
             android:layout_height="4dp"
-            android:background="#38006b"
+            android:background="@color/magenta_dark"
             app:layout_constraintEnd_toStartOf="@id/btnSinger"
             app:layout_constraintTop_toTopOf="@id/btnSinger"
             app:layout_constraintBottom_toBottomOf="@id/btnSinger"/>
@@ -38,7 +38,7 @@
             android:id="@+id/viewRight"
             android:layout_width="30dp"
             android:layout_height="4dp"
-            android:background="#38006b"
+            android:background="@color/magenta_dark"
             app:layout_constraintStart_toEndOf="@id/btnSinger"
             app:layout_constraintTop_toTopOf="@id/btnSinger"
             app:layout_constraintBottom_toBottomOf="@id/btnSinger"/>

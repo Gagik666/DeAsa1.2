@@ -93,17 +93,13 @@ fun Fragment.isGoogle(res: Boolean) {
     val editor = Value.googlePref?.edit()?.putBoolean("isGoogle", res)?.apply()
 }
 
-fun Fragment.isTrueSong() {
-    val mediaPlayer = MediaPlayer.create(context, R.raw._true)
+fun Fragment.song(id: Int) {
+    val mediaPlayer = MediaPlayer.create(context, id)
     if (Value.sound)
         mediaPlayer.start()
 }
 
-fun Fragment.isFalesSong() {
-    val mediaPlayer = MediaPlayer.create(context, R.raw._false)
-    if (Value.sound)
-        mediaPlayer.start()
-}
+
 
 
 

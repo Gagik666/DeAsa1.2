@@ -1,7 +1,7 @@
 package com.example.deasa12.screens
 
 import android.app.Activity
-import android.media.MediaPlayer
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +11,9 @@ import androidx.core.app.ActivityCompat.recreate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.deasa12.Extensions.isFalesSong
-import com.example.deasa12.Extensions.isTrueSong
 import com.example.deasa12.Extensions.openFragment
+import com.example.deasa12.Extensions.song
+import com.example.deasa12.Extensions.songOff
 import com.example.deasa12.`object`.dataList.DataList
 import com.example.deasa12.R
 import com.example.deasa12.adapters.SingerAdapter
@@ -48,6 +48,18 @@ class DeAsaStoageFragment : Fragment() {
 
         deAsaViewModel.liveDataTimer.observe(viewLifecycleOwner, Observer {
             binding.tvSeconds.text = it
+
+            if (it.toString().toInt() < 4) {
+                binding.tvSeconds.setTextColor(Color.parseColor("#AA0000"))
+
+            } else {
+                binding.tvSeconds.setTextColor(Color.parseColor("#38006b"))
+            }
+
+            if (it.toString().toInt() == 3) {
+                song(R.raw.time_of)
+            }
+
             if (it.toString().toInt() == 0) {
                 openFragment(R.id.action_deAsaStoageFragment_to_pointFragment)
                 DataList.tempList.clear()
@@ -79,10 +91,10 @@ class DeAsaStoageFragment : Fragment() {
                 Value.lisIsEmpty = true
             }
             if (it) {
-                isTrueSong()
+                song(R.raw._true)
                 point++
             } else {
-                isFalesSong()
+                song(R.raw._false)
                 point--
             }
             if (queue == 1 || queue == 3) {

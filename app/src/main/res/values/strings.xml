@@ -14,4 +14,5 @@
     <string name="emailtv">Email</string>
     <string name="firstname_lastname">FirstName LastName</string>
     <string name="setings">SETINGS</string>
+    <string name="interval">Interval</string>
 </resources>
